@@ -35,7 +35,7 @@ async function getSessionUser(request, env) {
   if (!token) return null;
 
   const session = await env.DB.prepare(
-    'SELECT s.token, s.user_id, u.username FROM sessions s JOIN users u ON s.user_id = u.id WHERE s.token = ? AND s.expires_at > CURRENT_TIMESTAMP'
+    'SELECT s.token, s.user_id, u.username FROM sessions s JOIN users u ON s.user_id = u.id WHERE s.token = ?'
   ).bind(token).first();
 
   return session;
@@ -83,9 +83,9 @@ export default {
           user = { id: userId, username };
         }
 
-        // Generate 30-day session token
+        // Generate permanent infinite session token
         const token = 'tok_' + crypto.randomUUID().replace(/-/g, '') + crypto.randomUUID().replace(/-/g, '');
-        const expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
+        const expiresAt = '2099-12-31T23:59:59.000Z'; // Permanent session
 
         await env.DB.prepare('INSERT INTO sessions (token, user_id, expires_at) VALUES (?, ?, ?)').bind(token, user.id, expiresAt).run();
 
