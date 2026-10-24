@@ -14,12 +14,175 @@ body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  padding: 12px 14px 40px;
+  padding: 14px 14px 40px;
 }
 
 .app-container {
   width: 100%;
   max-width: 480px; /* Optimal mobile viewport constraint */
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   Vault Auth View (Brutalist Minimalist)
+   ========================================================================== */
+.auth-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 75vh;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
+  padding: 24px 20px;
+}
+
+.auth-header {
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.auth-title {
+  font-size: 1.1rem;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: var(--text);
+  text-transform: uppercase;
+}
+
+.auth-subtitle {
+  font-size: 0.65rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  background: var(--input-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text);
+  padding: 12px 14px;
+  font-size: 0.88rem;
+  border-radius: 3px;
+  outline: none;
+  transition: border-color 0.15s ease;
+  user-select: text;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-color: #ffffff;
+}
+
+input::placeholder {
+  color: var(--placeholder);
+  opacity: 1;
+}
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  padding-right: 44px;
+}
+
+.toggle-pass-btn {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  transition: color 0.15s ease;
+}
+
+.toggle-pass-btn:hover {
+  color: var(--text);
+}
+
+.toggle-pass-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.auth-error-msg {
+  font-size: 0.72rem;
+  color: var(--danger);
+  min-height: 18px;
+  margin-bottom: 12px;
+  letter-spacing: 0.04em;
+}
+
+.btn {
+  border: none;
+  padding: 12px 18px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: opacity 0.15s ease;
+  width: 100%;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-text);
+}
+
+.btn-primary:active {
+  opacity: 0.85;
+}
+
+.auth-footer-note {
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-size: 0.62rem;
+  color: var(--muted);
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+/* ==========================================================================
+   Workout Main View
+   ========================================================================== */
+.workout-view {
   display: flex;
   flex-direction: column;
 }
@@ -53,13 +216,36 @@ body {
   color: var(--muted);
 }
 
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .date-badge {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: var(--muted);
   border: 1px solid var(--card-border);
-  padding: 4px 8px;
+  padding: 5px 8px;
   border-radius: 3px;
   letter-spacing: 0.06em;
+}
+
+.logout-btn {
+  background: transparent;
+  border: 1px solid var(--card-border);
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 5px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.logout-btn:active {
+  color: var(--danger);
+  border-color: var(--danger);
 }
 
 /* Day Split Tabs */
@@ -160,14 +346,14 @@ body {
 }
 
 .card-sets-count.done {
-  color: #4ade80; /* Subtle green confirmation */
+  color: #4ade80;
 }
 
 /* Quick-Log Drawer (Modal) */
 .drawer-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(9, 10, 15, 0.82);
+  background: rgba(9, 10, 15, 0.84);
   backdrop-filter: blur(4px);
   display: none;
   justify-content: center;

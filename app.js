@@ -1,10 +1,13 @@
 /**
  * Minimal Brutalist Gym PWA Core Logic
  * Pure Vanilla JavaScript (ESM)
- * Offline-first localStorage storage
+ * Remote Session Authentication via Cloudflare Workers + D1
+ * Offline-first fallback cache
  */
 
-// Initial Seed Machines (Curated for West Bank gym setups: Machines & Cables)
+const API_BASE = 'https://gym-pwa.super-yahyaaa.workers.dev';
+
+// Initial Seed Machines (Curated Machines & Cables)
 const DEFAULT_EXERCISES = [
   // PUSH
   { id: 'chest_press', name: 'SEATED CHEST PRESS', split: 'PUSH', muscle: 'CHEST', defaultWeight: 50.0, defaultReps: 10 },
@@ -32,6 +35,8 @@ const DEFAULT_EXERCISES = [
 
 // State Management
 const STATE = {
+  token: localStorage.getItem('iron_token') || null,
+  sessionUser: localStorage.getItem('iron_user') || null,
   currentSplit: 'PUSH',
   selectedExercise: null,
   currentWeight: 50.0,
@@ -40,7 +45,21 @@ const STATE = {
   exercises: JSON.parse(localStorage.getItem('iron_exercises') || JSON.stringify(DEFAULT_EXERCISES))
 };
 
-// DOM References
+// DOM References: Views
+const authView = document.getElementById('auth-view');
+const workoutView = document.getElementById('workout-view');
+
+// DOM References: Auth
+const authForm = document.getElementById('auth-form');
+const authUsername = document.getElementById('auth-username');
+const authPassphrase = document.getElementById('auth-passphrase');
+const togglePassBtn = document.getElementById('toggle-pass-btn');
+const authErrorMsg = document.getElementById('auth-error-msg');
+const btnLogin = document.getElementById('btn-login');
+const btnLogout = document.getElementById('btn-logout');
+
+// DOM References: Workout
+const connectionStatus = document.getElementById('connection-status');
 const splitNav = document.getElementById('split-nav');
 const exerciseList = document.getElementById('exercise-list');
 const drawerOverlay = document.getElementById('drawer-overlay');
@@ -54,12 +73,81 @@ const todaySetsPills = document.getElementById('today-sets-pills');
 const btnSaveSet = document.getElementById('btn-save-set');
 const currentDateEl = document.getElementById('current-date');
 
+// Switch between Login Page and Workout Dashboard
+function syncViewState() {
+  if (STATE.token && STATE.sessionUser) {
+    authView.style.display = 'none';
+    workoutView.style.display = 'flex';
+    initDate();
+    renderCards();
+    syncLogsFromServer();
+  } else {
+    authView.style.display = 'flex';
+    workoutView.style.display = 'none';
+    authPassphrase.value = '';
+    authUsername.value = STATE.sessionUser || '';
+    authUsername.focus();
+  }
+}
+
 // Format today's date
 function initDate() {
   const d = new Date();
   const day = String(d.getDate()).padStart(2, '0');
   const month = String(d.getMonth() + 1).padStart(2, '0');
   currentDateEl.textContent = `${day}/${month}`;
+}
+
+// Verify active session with Edge Worker
+async function verifySession() {
+  if (!STATE.token) {
+    syncViewState();
+    return;
+  }
+
+  try {
+    const res = await fetch(`${API_BASE}/api/auth/session`, {
+      headers: { 'Authorization': `Bearer ${STATE.token}` }
+    });
+    const data = await res.json();
+    if (!res.ok || !data.valid) {
+      // Token invalid or expired
+      clearSession();
+    } else {
+      connectionStatus.textContent = `SYNCED // ${data.user.username.toUpperCase()}`;
+    }
+  } catch (err) {
+    // Offline mode: Keep going with local cache
+    connectionStatus.textContent = 'OFFLINE // LOCAL CACHE';
+  }
+}
+
+// Fetch logs from remote D1
+async function syncLogsFromServer() {
+  if (!STATE.token) return;
+
+  try {
+    const res = await fetch(`${API_BASE}/api/logs`, {
+      headers: { 'Authorization': `Bearer ${STATE.token}` }
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (data.logs && Array.isArray(data.logs)) {
+        // Map D1 rows to client log objects
+        STATE.logs = data.logs.map(l => ({
+          id: l.id,
+          exerciseId: l.exercise_id,
+          weight: l.weight_kg,
+          reps: l.reps,
+          timestamp: l.logged_at
+        }));
+        localStorage.setItem('iron_logs', JSON.stringify(STATE.logs));
+        renderCards();
+      }
+    }
+  } catch (err) {
+    console.warn('Network sync paused, using offline cache');
+  }
 }
 
 // Get the latest log entry for an exercise
@@ -115,7 +203,6 @@ function openDrawer(exercise) {
 
   if (last) {
     drawerLastStat.innerHTML = `LAST: <span>${last.weight} KG × ${last.reps} REPS</span>`;
-    // Pre-fill with last logged weight/reps so user just taps "LOG SET"
     STATE.currentWeight = last.weight;
     STATE.currentReps = last.reps;
   } else {
@@ -158,8 +245,8 @@ function renderTodayPills(todayLogs) {
   });
 }
 
-// Save Set Action
-function saveCurrentSet() {
+// Save Set Action (Local first, async background sync to Cloudflare D1)
+async function saveCurrentSet() {
   if (!STATE.selectedExercise) return;
 
   const newLog = {
@@ -170,21 +257,106 @@ function saveCurrentSet() {
     timestamp: new Date().toISOString()
   };
 
+  // 1. Immediate local update
   STATE.logs.push(newLog);
   localStorage.setItem('iron_logs', JSON.stringify(STATE.logs));
 
-  // Visual feedback: update drawer's today pills
   const today = getTodayLogs(STATE.selectedExercise.id);
   renderTodayPills(today);
-
-  // Re-render exercise cards in background
   renderCards();
 
-  // Gentle haptic feedback if supported on mobile
   if (navigator.vibrate) {
     navigator.vibrate(35);
   }
+
+  // 2. Async background sync to remote D1
+  if (STATE.token) {
+    fetch(`${API_BASE}/api/logs`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${STATE.token}`
+      },
+      body: JSON.stringify(newLog)
+    }).catch(err => console.warn('Queued log locally (offline)'));
+  }
 }
+
+// Event Listeners: Auth Form Submission
+authForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const username = authUsername.value.trim().toLowerCase();
+  const passphrase = authPassphrase.value.trim();
+
+  if (!username || !passphrase) {
+    authErrorMsg.textContent = 'ENTER BOTH USERNAME AND PASSPHRASE';
+    return;
+  }
+
+  btnLogin.textContent = 'AUTHENTICATING...';
+  btnLogin.disabled = true;
+  authErrorMsg.textContent = '';
+
+  try {
+    const res = await fetch(`${API_BASE}/api/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, passphrase })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      authErrorMsg.textContent = data.error || 'AUTHENTICATION FAILED';
+      btnLogin.textContent = 'AUTHENTICATE';
+      btnLogin.disabled = false;
+      return;
+    }
+
+    // Persist 30-day session
+    STATE.token = data.token;
+    STATE.sessionUser = data.user.username;
+    localStorage.setItem('iron_token', data.token);
+    localStorage.setItem('iron_user', data.user.username);
+
+    btnLogin.textContent = 'AUTHENTICATE';
+    btnLogin.disabled = false;
+    syncViewState();
+  } catch (err) {
+    // If backend is unreachable, fallback to local standalone session
+    STATE.sessionUser = username;
+    STATE.token = 'local_fallback_tok';
+    localStorage.setItem('iron_user', username);
+    localStorage.setItem('iron_token', 'local_fallback_tok');
+    btnLogin.textContent = 'AUTHENTICATE';
+    btnLogin.disabled = false;
+    syncViewState();
+  }
+});
+
+// Toggle password peek
+togglePassBtn.addEventListener('click', () => {
+  const isPass = authPassphrase.type === 'password';
+  authPassphrase.type = isPass ? 'text' : 'password';
+  togglePassBtn.style.color = isPass ? 'var(--text)' : 'var(--muted)';
+});
+
+// Logout / Lock Action
+function clearSession() {
+  if (STATE.token && STATE.token !== 'local_fallback_tok') {
+    fetch(`${API_BASE}/api/auth/logout`, {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${STATE.token}` }
+    }).catch(() => {});
+  }
+  STATE.token = null;
+  STATE.sessionUser = null;
+  localStorage.removeItem('iron_token');
+  localStorage.removeItem('iron_user');
+  syncViewState();
+}
+
+btnLogout.addEventListener('click', clearSession);
 
 // Event Listeners: Steppers
 document.querySelectorAll('.step-btn').forEach(btn => {
@@ -217,6 +389,6 @@ drawerOverlay.addEventListener('click', (e) => {
 });
 btnSaveSet.addEventListener('click', saveCurrentSet);
 
-// Initialize
-initDate();
-renderCards();
+// Initial Launch Sequence
+syncViewState();
+verifySession();

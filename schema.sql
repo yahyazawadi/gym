@@ -6,6 +6,15 @@ CREATE TABLE IF NOT EXISTS users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Sessions Table (Secure Token Auth)
+CREATE TABLE IF NOT EXISTS sessions (
+    token TEXT PRIMARY KEY,
+    user_id TEXT NOT NULL,
+    expires_at TIMESTAMP NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(user_id) REFERENCES users(id)
+);
+
 -- Workout Logs (Raw, High-Resolution Metrics)
 CREATE TABLE IF NOT EXISTS workout_logs (
     id TEXT PRIMARY KEY,
@@ -27,5 +36,6 @@ CREATE TABLE IF NOT EXISTS user_routines (
     FOREIGN KEY(user_id) REFERENCES users(id)
 );
 
+CREATE INDEX IF NOT EXISTS idx_sessions_user ON sessions(user_id);
 CREATE INDEX IF NOT EXISTS idx_logs_user_date ON workout_logs(user_id, logged_at);
 CREATE INDEX IF NOT EXISTS idx_logs_user_exercise ON workout_logs(user_id, exercise_id);

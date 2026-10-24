@@ -12,83 +12,126 @@
 </head>
 <body>
   <div class="app-container">
-    <!-- Header -->
-    <header class="header">
-      <div class="logo-group">
-        <span class="logo-title">IRON // LOG</span>
-        <span class="logo-status" id="connection-status">LOCAL ONLY</span>
-      </div>
-      <div class="date-badge" id="current-date">--/--</div>
-    </header>
 
-    <!-- Routine / Day Split Bar -->
-    <nav class="split-nav" id="split-nav">
-      <button class="split-tab active" data-split="PUSH">PUSH</button>
-      <button class="split-tab" data-split="PULL">PULL</button>
-      <button class="split-tab" data-split="LEGS">LEGS</button>
-      <button class="split-tab" data-split="ALL">ALL</button>
-    </nav>
+    <!-- Auth View (Vault-Inspired Minimal Brutalist Login) -->
+    <section class="auth-view" id="auth-view">
+      <div class="auth-box card">
+        <div class="auth-header">
+          <span class="auth-title">IRON // ACCESS</span>
+          <span class="auth-subtitle">ENTER CREDENTIALS TO SYNC WORKOUTS</span>
+        </div>
 
-    <!-- Main Content: Exercise Cards for selected split -->
-    <main class="exercise-list" id="exercise-list">
-      <!-- Injected dynamically via app.js -->
-    </main>
-
-    <!-- Tap-Only Quick-Log Drawer (Modal) -->
-    <div class="drawer-overlay" id="drawer-overlay">
-      <div class="drawer" id="log-drawer">
-        <div class="drawer-header">
-          <div>
-            <div class="drawer-category" id="drawer-category">MACHINE // PUSH</div>
-            <div class="drawer-title" id="drawer-title">SEATED CHEST PRESS</div>
+        <form id="auth-form" autocomplete="off">
+          <div class="form-group">
+            <label for="auth-username">OPERATOR USERNAME</label>
+            <input type="text" id="auth-username" placeholder="e.g. yahya" required spellcheck="false" autocomplete="username">
           </div>
-          <button class="close-btn" id="drawer-close" aria-label="Close">✕</button>
-        </div>
 
-        <div class="last-stat-banner" id="drawer-last-stat">
-          LAST: <span>55.0 KG × 10 REPS</span>
-        </div>
-
-        <!-- Weight Stepper -->
-        <div class="stepper-section">
-          <label class="stepper-label">LOAD (KG)</label>
-          <div class="stepper-row">
-            <button class="step-btn" data-field="weight" data-delta="-5.0">-5</button>
-            <button class="step-btn" data-field="weight" data-delta="-2.5">-2.5</button>
-            <div class="step-display">
-              <span class="step-val" id="val-weight">55.0</span>
-              <span class="step-unit">KG</span>
+          <div class="form-group">
+            <label for="auth-passphrase">PASSPHRASE</label>
+            <div class="password-wrapper">
+              <input type="password" id="auth-passphrase" placeholder="••••••••••••" required autocomplete="current-password">
+              <button type="button" class="toggle-pass-btn" id="toggle-pass-btn" aria-label="Toggle password visibility">
+                <svg id="eye-icon" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              </button>
             </div>
-            <button class="step-btn" data-field="weight" data-delta="+2.5">+2.5</button>
-            <button class="step-btn" data-field="weight" data-delta="+5.0">+5</button>
           </div>
-        </div>
 
-        <!-- Reps Stepper -->
-        <div class="stepper-section">
-          <label class="stepper-label">REPETITIONS</label>
-          <div class="stepper-row reps-row">
-            <button class="step-btn wide" data-field="reps" data-delta="-1">- 1</button>
-            <div class="step-display">
-              <span class="step-val" id="val-reps">10</span>
-              <span class="step-unit">REPS</span>
-            </div>
-            <button class="step-btn wide" data-field="reps" data-delta="+1">+ 1</button>
-          </div>
-        </div>
+          <div class="auth-error-msg" id="auth-error-msg"></div>
 
-        <!-- Today's Logged Sets on this machine -->
-        <div class="today-sets-wrap">
-          <div class="today-sets-label">TODAY'S SETS</div>
-          <div class="today-sets-pills" id="today-sets-pills">
-            <!-- e.g. [1: 55kg x 10] -->
-          </div>
-        </div>
+          <button type="submit" class="btn btn-primary" id="btn-login">AUTHENTICATE</button>
+        </form>
 
-        <!-- Submit Button -->
-        <button class="log-action-btn" id="btn-save-set">LOG SET</button>
+        <div class="auth-footer-note">
+          OFFLINE CACHE AUTOMATICALLY PROTECTED ON DEVICE
+        </div>
       </div>
-    </div>
+    </section>
+
+    <!-- Workout Main View (Hidden until authenticated) -->
+    <section class="workout-view" id="workout-view" style="display: none;">
+      <!-- Header -->
+      <header class="header">
+        <div class="logo-group">
+          <span class="logo-title">IRON // LOG</span>
+          <span class="logo-status" id="connection-status">LOCAL // OFFLINE READY</span>
+        </div>
+        <div class="header-right">
+          <div class="date-badge" id="current-date">--/--</div>
+          <button class="logout-btn" id="btn-logout" title="Lock Session">LOCK</button>
+        </div>
+      </header>
+
+      <!-- Routine / Day Split Bar -->
+      <nav class="split-nav" id="split-nav">
+        <button class="split-tab active" data-split="PUSH">PUSH</button>
+        <button class="split-tab" data-split="PULL">PULL</button>
+        <button class="split-tab" data-split="LEGS">LEGS</button>
+        <button class="split-tab" data-split="ALL">ALL</button>
+      </nav>
+
+      <!-- Main Content: Exercise Cards for selected split -->
+      <main class="exercise-list" id="exercise-list">
+        <!-- Injected dynamically via app.js -->
+      </main>
+
+      <!-- Tap-Only Quick-Log Drawer (Modal) -->
+      <div class="drawer-overlay" id="drawer-overlay">
+        <div class="drawer" id="log-drawer">
+          <div class="drawer-header">
+            <div>
+              <div class="drawer-category" id="drawer-category">MACHINE // PUSH</div>
+              <div class="drawer-title" id="drawer-title">SEATED CHEST PRESS</div>
+            </div>
+            <button class="close-btn" id="drawer-close" aria-label="Close">✕</button>
+          </div>
+
+          <div class="last-stat-banner" id="drawer-last-stat">
+            LAST: <span>55.0 KG × 10 REPS</span>
+          </div>
+
+          <!-- Weight Stepper -->
+          <div class="stepper-section">
+            <label class="stepper-label">LOAD (KG)</label>
+            <div class="stepper-row">
+              <button class="step-btn" data-field="weight" data-delta="-5.0">-5</button>
+              <button class="step-btn" data-field="weight" data-delta="-2.5">-2.5</button>
+              <div class="step-display">
+                <span class="step-val" id="val-weight">55.0</span>
+                <span class="step-unit">KG</span>
+              </div>
+              <button class="step-btn" data-field="weight" data-delta="+2.5">+2.5</button>
+              <button class="step-btn" data-field="weight" data-delta="+5.0">+5</button>
+            </div>
+          </div>
+
+          <!-- Reps Stepper -->
+          <div class="stepper-section">
+            <label class="stepper-label">REPETITIONS</label>
+            <div class="stepper-row reps-row">
+              <button class="step-btn wide" data-field="reps" data-delta="-1">- 1</button>
+              <div class="step-display">
+                <span class="step-val" id="val-reps">10</span>
+                <span class="step-unit">REPS</span>
+              </div>
+              <button class="step-btn wide" data-field="reps" data-delta="+1">+ 1</button>
+            </div>
+          </div>
+
+          <!-- Today's Logged Sets on this machine -->
+          <div class="today-sets-wrap">
+            <div class="today-sets-label">TODAY'S SETS</div>
+            <div class="today-sets-pills" id="today-sets-pills">
+              <!-- e.g. [S1: 55kg x 10] -->
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button class="log-action-btn" id="btn-save-set">LOG SET</button>
+        </div>
+      </div>
+    </section>
+
   </div>
 
   <script src="app.js" type="module"></script>
