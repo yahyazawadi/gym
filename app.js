@@ -368,24 +368,35 @@ authForm.addEventListener('submit', async (e) => {
   }
 });
 
-// Toggle password peek with tilted dumbbell
+// Toggle password peek
 togglePassBtn.addEventListener('click', () => {
   const isPass = authPassphrase.type === 'password';
   authPassphrase.type = isPass ? 'text' : 'password';
-  togglePassBtn.classList.toggle('revealed', isPass);
+  const wrapper = authPassphrase.closest('.password-wrapper');
+  wrapper.classList.toggle('revealed', isPass);
+  togglePassBtn.style.color = isPass ? 'var(--text)' : 'var(--muted)';
 });
 
-// Update dumbbell placeholder visibility on typing
-[authPassphrase, authConfirmPass].forEach(input => {
-  if (!input) return;
-  const wrapper = input.closest('.password-wrapper');
-  input.addEventListener('input', () => {
-    if (input.value.length > 0) {
-      wrapper.classList.add('has-value');
-    } else {
-      wrapper.classList.remove('has-value');
-    }
-  });
+// Render custom tilted dumbbell glyphs for each character typed
+function updateDumbbellDisplay(input, displayEl) {
+  displayEl.innerHTML = '';
+  const len = input.value.length;
+  for (let i = 0; i < len; i++) {
+    const icon = document.createElement('span');
+    icon.className = 'typed-dumbbell';
+    displayEl.appendChild(icon);
+  }
+}
+
+const displayPassphrase = document.getElementById('display-passphrase');
+const displayConfirm = document.getElementById('display-confirm');
+
+authPassphrase.addEventListener('input', () => {
+  updateDumbbellDisplay(authPassphrase, displayPassphrase);
+});
+
+authConfirmPass.addEventListener('input', () => {
+  updateDumbbellDisplay(authConfirmPass, displayConfirm);
 });
 
 // Logout / Lock Action

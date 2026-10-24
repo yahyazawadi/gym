@@ -29,16 +29,9 @@
 
           <div class="form-group">
             <label for="auth-passphrase">PASSPHRASE</label>
-            <div class="password-wrapper">
+            <div class="password-wrapper" id="wrapper-passphrase">
               <input type="password" id="auth-passphrase" required autocomplete="current-password">
-              <div class="dumbbell-placeholder" id="placeholder-passphrase">
-                <span class="db-icon"></span>
-                <span class="db-icon"></span>
-                <span class="db-icon"></span>
-                <span class="db-icon"></span>
-                <span class="db-icon"></span>
-                <span class="db-icon"></span>
-              </div>
+              <div class="custom-password-display" id="display-passphrase"></div>
               <button type="button" class="toggle-pass-btn" id="toggle-pass-btn" aria-label="Toggle password visibility">
                 <svg id="eye-icon" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
               </button>
@@ -47,16 +40,9 @@
 
           <div class="form-group" id="group-confirm-pass" style="display: none;">
             <label for="auth-confirm-passphrase">CONFIRM PASSPHRASE</label>
-            <div class="password-wrapper">
+            <div class="password-wrapper" id="wrapper-confirm">
               <input type="password" id="auth-confirm-passphrase" autocomplete="new-password">
-              <div class="dumbbell-placeholder" id="placeholder-confirm">
-                <span class="db-icon"></span>
-                <span class="db-icon"></span>
-                <span class="db-icon"></span>
-                <span class="db-icon"></span>
-                <span class="db-icon"></span>
-                <span class="db-icon"></span>
-              </div>
+              <div class="custom-password-display" id="display-confirm"></div>
             </div>
           </div>
 
