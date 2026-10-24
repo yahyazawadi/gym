@@ -86,11 +86,16 @@ function syncViewState() {
     renderCards();
     syncLogsFromServer();
   } else {
-    authView.style.display = 'flex';
     workoutView.style.display = 'none';
+    authView.style.display = 'flex';
     authPassphrase.value = '';
+    authConfirmPass.value = '';
     authUsername.value = STATE.sessionUser || '';
-    authUsername.focus();
+    if (authUsername.value) {
+      authPassphrase.focus();
+    } else {
+      authUsername.focus();
+    }
   }
 }
 
@@ -372,32 +377,17 @@ authForm.addEventListener('submit', async (e) => {
 togglePassBtn.addEventListener('click', () => {
   const isPass = authPassphrase.type === 'password';
   authPassphrase.type = isPass ? 'text' : 'password';
-  const wrapper = authPassphrase.closest('.password-wrapper');
-  wrapper.classList.toggle('revealed', isPass);
   togglePassBtn.style.color = isPass ? 'var(--text)' : 'var(--muted)';
 });
 
-// Render custom tilted dumbbell glyphs for each character typed
-function updateDumbbellDisplay(input, displayEl) {
-  displayEl.innerHTML = '';
-  const len = input.value.length;
-  for (let i = 0; i < len; i++) {
-    const icon = document.createElement('span');
-    icon.className = 'typed-dumbbell';
-    displayEl.appendChild(icon);
-  }
+const toggleConfirmPassBtn = document.getElementById('toggle-confirm-pass-btn');
+if (toggleConfirmPassBtn) {
+  toggleConfirmPassBtn.addEventListener('click', () => {
+    const isPass = authConfirmPass.type === 'password';
+    authConfirmPass.type = isPass ? 'text' : 'password';
+    toggleConfirmPassBtn.style.color = isPass ? 'var(--text)' : 'var(--muted)';
+  });
 }
-
-const displayPassphrase = document.getElementById('display-passphrase');
-const displayConfirm = document.getElementById('display-confirm');
-
-authPassphrase.addEventListener('input', () => {
-  updateDumbbellDisplay(authPassphrase, displayPassphrase);
-});
-
-authConfirmPass.addEventListener('input', () => {
-  updateDumbbellDisplay(authConfirmPass, displayConfirm);
-});
 
 // Logout / Lock Action
 function clearSession() {
@@ -407,10 +397,19 @@ function clearSession() {
       headers: { 'Authorization': `Bearer ${STATE.token}` }
     }).catch(() => {});
   }
+  // Wipe session memory and tokens
   STATE.token = null;
   STATE.sessionUser = null;
   localStorage.removeItem('iron_token');
   localStorage.removeItem('iron_user');
+
+  // Close quick-log drawer if open
+  closeDrawer();
+
+  // Reset to default login mode
+  setAuthMode('login');
+
+  // Direct immediately into login page
   syncViewState();
 }
 
