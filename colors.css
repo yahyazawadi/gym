@@ -1,37 +1,36 @@
 /**
- * Vault Minimal Brutalist Design System
- * Extracted directly from v.yahya.click (scratch/index.html)
- * Strictly enforced across the Gym PWA.
+ * Luxury Minimal Obsidian & Deep British Racing Green
+ * Ultra-dark neutral abyss backdrop with understated, high-end desaturated dark green cards.
  */
 
 :root {
   /* Surfaces & Backgrounds */
-  --bg: #090a0f;              /* Deepest obsidian abyss */
-  --card: #11131a;            /* Elevated card surface */
-  --card-hover: #141721;      /* Interactive hover state */
-  --input-bg: #0d0f14;        /* Inset field background */
+  --bg: #090b0a;              /* Pure sleek deep obsidian */
+  --card: #101512;            /* Deep muted British racing green surface */
+  --card-hover: #151c18;      /* Subtle lift */
+  --input-bg: #0c100e;        /* Clean inset background */
   
   /* Borders & Dividers */
-  --card-border: #1e2230;     /* Crisp structural outline */
-  --card-border-focus: #3b4259;
-  --line: #171b26;            /* Subtle horizontal rule */
+  --card-border: #1b2620;     /* Ultra-clean, delicate dark wireframe */
+  --card-border-focus: #2d4237;
+  --line: #131b16;            /* Minimal hair-line separator */
   
   /* Typography & Foreground */
-  --text: #e8f0fe;            /* Primary crisp high-contrast off-white */
-  --text-dim: #9aa5b8;        /* Secondary label text */
-  --muted: #64748b;           /* Metadata, timestamps, helper text */
-  --placeholder: #52525b;     /* Inactive input placeholders */
+  --text: #eef2f0;            /* Crisp clean neutral white */
+  --text-dim: #9aa8a1;        /* Muted sage-grey label text */
+  --muted: #5e6f66;           /* Understated metadata */
+  --placeholder: #414f48;     /* Inactive placeholders */
   
-  /* Accent & Action */
-  --accent: #e8f0fe;          /* High-contrast solid primary action */
-  --accent-text: #090a0f;     /* Inverted text on accent buttons */
-  --accent-cyan: #38bdf8;     /* Monospace metrics, PRs, active highlights */
+  /* Primary Action & Accent (Clean, Solid, Premium) */
+  --accent: #eef2f0;          /* Monochromatic off-white primary action (like Vault) */
+  --accent-text: #090b0a;     /* Inverted deep text */
+  --accent-cyan: #34d399;     /* Subtle emerald highlight for metrics & PRs */
   
-  /* Destructive & Warning */
-  --danger: #ef4444;          /* Critical destructive action */
-  --danger-border: #3b1d1d;   /* Subtle border for danger state */
+  /* Destructive */
+  --danger: #ef4444;
+  --danger-border: #3b1d1d;
   --danger-hover: #dc2626;
 
-  /* Typography Spec */
+  /* Typography */
   --font-mono: 'JetBrains Mono', monospace;
 }

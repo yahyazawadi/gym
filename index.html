@@ -37,10 +37,21 @@
             </div>
           </div>
 
+          <div class="form-group" id="group-confirm-pass" style="display: none;">
+            <label for="auth-confirm-passphrase">CONFIRM PASSPHRASE</label>
+            <input type="password" id="auth-confirm-passphrase" placeholder="••••••••••••" autocomplete="new-password">
+          </div>
+
           <div class="auth-error-msg" id="auth-error-msg"></div>
 
           <button type="submit" class="btn btn-primary" id="btn-login">AUTHENTICATE</button>
         </form>
+
+        <div class="auth-toggle-wrap">
+          <button type="button" class="auth-toggle-link" id="btn-toggle-auth-mode">
+            NEED AN ACCOUNT? CREATE OPERATOR
+          </button>
+        </div>
 
         <div class="auth-footer-note">
           OFFLINE CACHE AUTOMATICALLY PROTECTED ON DEVICE

@@ -37,6 +37,7 @@ const DEFAULT_EXERCISES = [
 const STATE = {
   token: localStorage.getItem('iron_token') || null,
   sessionUser: localStorage.getItem('iron_user') || null,
+  authMode: 'login', // 'login' | 'register'
   currentSplit: 'PUSH',
   selectedExercise: null,
   currentWeight: 50.0,
@@ -53,6 +54,9 @@ const workoutView = document.getElementById('workout-view');
 const authForm = document.getElementById('auth-form');
 const authUsername = document.getElementById('auth-username');
 const authPassphrase = document.getElementById('auth-passphrase');
+const groupConfirmPass = document.getElementById('group-confirm-pass');
+const authConfirmPass = document.getElementById('auth-confirm-passphrase');
+const btnToggleAuthMode = document.getElementById('btn-toggle-auth-mode');
 const togglePassBtn = document.getElementById('toggle-pass-btn');
 const authErrorMsg = document.getElementById('auth-error-msg');
 const btnLogin = document.getElementById('btn-login');
@@ -282,6 +286,28 @@ async function saveCurrentSet() {
   }
 }
 
+// Switch between Login and Register Mode
+function setAuthMode(mode) {
+  STATE.authMode = mode;
+  authErrorMsg.textContent = '';
+  if (mode === 'register') {
+    groupConfirmPass.style.display = 'block';
+    authConfirmPass.required = true;
+    btnLogin.textContent = 'CREATE ACCOUNT';
+    btnToggleAuthMode.textContent = 'ALREADY REGISTERED? LOG IN';
+  } else {
+    groupConfirmPass.style.display = 'none';
+    authConfirmPass.required = false;
+    authConfirmPass.value = '';
+    btnLogin.textContent = 'AUTHENTICATE';
+    btnToggleAuthMode.textContent = 'NEED AN ACCOUNT? CREATE OPERATOR';
+  }
+}
+
+btnToggleAuthMode.addEventListener('click', () => {
+  setAuthMode(STATE.authMode === 'login' ? 'register' : 'login');
+});
+
 // Event Listeners: Auth Form Submission
 authForm.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -293,7 +319,15 @@ authForm.addEventListener('submit', async (e) => {
     return;
   }
 
-  btnLogin.textContent = 'AUTHENTICATING...';
+  if (STATE.authMode === 'register') {
+    const confirmPass = authConfirmPass.value.trim();
+    if (passphrase !== confirmPass) {
+      authErrorMsg.textContent = 'PASSPHRASES DO NOT MATCH';
+      return;
+    }
+  }
+
+  btnLogin.textContent = STATE.authMode === 'register' ? 'REGISTERING...' : 'AUTHENTICATING...';
   btnLogin.disabled = true;
   authErrorMsg.textContent = '';
 
@@ -308,12 +342,12 @@ authForm.addEventListener('submit', async (e) => {
 
     if (!res.ok) {
       authErrorMsg.textContent = data.error || 'AUTHENTICATION FAILED';
-      btnLogin.textContent = 'AUTHENTICATE';
+      btnLogin.textContent = STATE.authMode === 'register' ? 'CREATE ACCOUNT' : 'AUTHENTICATE';
       btnLogin.disabled = false;
       return;
     }
 
-    // Persist 30-day session
+    // Persist permanent session
     STATE.token = data.token;
     STATE.sessionUser = data.user.username;
     localStorage.setItem('iron_token', data.token);

@@ -169,6 +169,29 @@ input::placeholder {
   opacity: 0.85;
 }
 
+.auth-toggle-wrap {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.auth-toggle-link {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: color 0.15s ease;
+  font-weight: 500;
+}
+
+.auth-toggle-link:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+
 .auth-footer-note {
   margin-top: 20px;
   padding-top: 12px;
