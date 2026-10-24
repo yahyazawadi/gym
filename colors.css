@@ -1,0 +1,37 @@
+/**
+ * Vault Minimal Brutalist Design System
+ * Extracted directly from v.yahya.click (scratch/index.html)
+ * Strictly enforced across the Gym PWA.
+ */
+
+:root {
+  /* Surfaces & Backgrounds */
+  --bg: #090a0f;              /* Deepest obsidian abyss */
+  --card: #11131a;            /* Elevated card surface */
+  --card-hover: #141721;      /* Interactive hover state */
+  --input-bg: #0d0f14;        /* Inset field background */
+  
+  /* Borders & Dividers */
+  --card-border: #1e2230;     /* Crisp structural outline */
+  --card-border-focus: #3b4259;
+  --line: #171b26;            /* Subtle horizontal rule */
+  
+  /* Typography & Foreground */
+  --text: #e8f0fe;            /* Primary crisp high-contrast off-white */
+  --text-dim: #9aa5b8;        /* Secondary label text */
+  --muted: #64748b;           /* Metadata, timestamps, helper text */
+  --placeholder: #52525b;     /* Inactive input placeholders */
+  
+  /* Accent & Action */
+  --accent: #e8f0fe;          /* High-contrast solid primary action */
+  --accent-text: #090a0f;     /* Inverted text on accent buttons */
+  --accent-cyan: #38bdf8;     /* Monospace metrics, PRs, active highlights */
+  
+  /* Destructive & Warning */
+  --danger: #ef4444;          /* Critical destructive action */
+  --danger-border: #3b1d1d;   /* Subtle border for danger state */
+  --danger-hover: #dc2626;
+
+  /* Typography Spec */
+  --font-mono: 'JetBrains Mono', monospace;
+}
