@@ -368,11 +368,24 @@ authForm.addEventListener('submit', async (e) => {
   }
 });
 
-// Toggle password peek
+// Toggle password peek with tilted dumbbell
 togglePassBtn.addEventListener('click', () => {
   const isPass = authPassphrase.type === 'password';
   authPassphrase.type = isPass ? 'text' : 'password';
-  togglePassBtn.style.color = isPass ? 'var(--text)' : 'var(--muted)';
+  togglePassBtn.classList.toggle('revealed', isPass);
+});
+
+// Update dumbbell placeholder visibility on typing
+[authPassphrase, authConfirmPass].forEach(input => {
+  if (!input) return;
+  const wrapper = input.closest('.password-wrapper');
+  input.addEventListener('input', () => {
+    if (input.value.length > 0) {
+      wrapper.classList.add('has-value');
+    } else {
+      wrapper.classList.remove('has-value');
+    }
+  });
 });
 
 // Logout / Lock Action

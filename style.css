@@ -69,19 +69,12 @@ body {
 }
 
 label {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: block;
   font-size: 0.7rem;
   color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: 6px;
-}
-
-.label-dumbbell {
-  color: var(--muted);
-  opacity: 0.7;
 }
 
 input[type="text"],
@@ -116,6 +109,34 @@ input::placeholder {
 
 .password-wrapper input {
   padding-right: 44px;
+}
+
+/* Tilted Dumbbell Placeholder */
+.dumbbell-placeholder {
+  position: absolute;
+  left: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none;
+  opacity: 0.28;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.password-wrapper input:focus ~ .dumbbell-placeholder,
+.password-wrapper.has-value .dumbbell-placeholder {
+  opacity: 0;
+  transform: translateX(4px);
+}
+
+.db-icon {
+  width: 15px;
+  height: 15px;
+  background-color: var(--muted);
+  display: inline-block;
+  mask: url('dumbbell.svg') no-repeat center / contain;
+  -webkit-mask: url('dumbbell.svg') no-repeat center / contain;
+  transform: rotate(-35deg); /* Tilted aesthetically */
 }
 
 .toggle-pass-btn {
