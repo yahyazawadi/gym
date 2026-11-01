@@ -127,6 +127,16 @@ const sumSets = document.getElementById('sum-sets');
 const summaryNextText = document.getElementById('summary-next-text');
 const btnCloseSummary = document.getElementById('btn-close-summary');
 
+// DOM References: Fullscreen Lightbox
+const lightboxOverlay = document.getElementById('lightbox-overlay');
+const lightboxClose = document.getElementById('lightbox-close');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxPrev = document.getElementById('lightbox-prev');
+const lightboxNext = document.getElementById('lightbox-next');
+const lightboxCounter = document.getElementById('lightbox-counter');
+let lightboxImages = [];
+let currentLightboxIndex = 0;
+
 // Register Service Worker for true offline capability
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
@@ -764,6 +774,70 @@ addMachineOverlay.addEventListener('click', (e) => {
 
 summaryClose.addEventListener('click', () => summaryOverlay.classList.remove('open'));
 btnCloseSummary.addEventListener('click', () => summaryOverlay.classList.remove('open'));
+
+// Fullscreen Lightbox Controls
+function openLightbox(images, startIndex = 0) {
+  if (!images || images.length === 0) return;
+  lightboxImages = images.map(img => img.startsWith('http') ? img : `${IMAGE_CDN_BASE}${img}`);
+  currentLightboxIndex = startIndex;
+  renderLightboxImage();
+  lightboxOverlay.classList.add('open');
+}
+
+function closeLightbox() {
+  lightboxOverlay.classList.remove('open');
+}
+
+function renderLightboxImage() {
+  lightboxImg.src = lightboxImages[currentLightboxIndex];
+  lightboxCounter.textContent = `${currentLightboxIndex + 1} / ${lightboxImages.length}`;
+  lightboxPrev.style.display = lightboxImages.length > 1 ? 'flex' : 'none';
+  lightboxNext.style.display = lightboxImages.length > 1 ? 'flex' : 'none';
+}
+
+function nextLightboxImage() {
+  currentLightboxIndex = (currentLightboxIndex + 1) % lightboxImages.length;
+  renderLightboxImage();
+}
+
+function prevLightboxImage() {
+  currentLightboxIndex = (currentLightboxIndex - 1 + lightboxImages.length) % lightboxImages.length;
+  renderLightboxImage();
+}
+
+// Lightbox click handlers
+drawerImg0.addEventListener('click', () => {
+  if (STATE.selectedExercise && STATE.selectedExercise.images) {
+    openLightbox(STATE.selectedExercise.images, 0);
+  }
+});
+
+drawerImg1.addEventListener('click', () => {
+  if (STATE.selectedExercise && STATE.selectedExercise.images) {
+    openLightbox(STATE.selectedExercise.images, 1);
+  }
+});
+
+lightboxClose.addEventListener('click', closeLightbox);
+lightboxNext.addEventListener('click', (e) => {
+  e.stopPropagation();
+  nextLightboxImage();
+});
+lightboxPrev.addEventListener('click', (e) => {
+  e.stopPropagation();
+  prevLightboxImage();
+});
+lightboxOverlay.addEventListener('click', (e) => {
+  if (e.target === lightboxOverlay) closeLightbox();
+});
+
+// Keyboard controls (Esc to close, left/right arrows)
+window.addEventListener('keydown', (e) => {
+  if (!lightboxOverlay.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowRight') nextLightboxImage();
+  if (e.key === 'ArrowLeft') prevLightboxImage();
+});
 
 // Initial Launch Sequence
 loadFullDataset();

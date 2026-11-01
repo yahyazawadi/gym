@@ -825,3 +825,114 @@ input::placeholder {
   letter-spacing: 0.06em;
 }
 
+/* ==========================================================================
+   Minimal Fullscreen Image Lightbox
+   ========================================================================== */
+.drawer-thumb {
+  cursor: zoom-in;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.drawer-thumb:active {
+  transform: scale(0.98);
+}
+
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.94);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.lightbox-overlay.open {
+  display: flex;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#lightbox-img {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  border: 1px solid var(--card-border-focus);
+  border-radius: 4px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.9);
+  background: #050608;
+}
+
+.lightbox-counter {
+  margin-top: 10px;
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: transparent;
+  border: 1px solid var(--card-border);
+  color: var(--text);
+  font-size: 1.1rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  z-index: 1010;
+}
+
+.lightbox-close:active {
+  background: var(--card-border);
+  border-color: var(--text);
+}
+
+.lightbox-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(17, 19, 26, 0.8);
+  border: 1px solid var(--card-border);
+  color: var(--text);
+  font-size: 1.8rem;
+  width: 44px;
+  height: 54px;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  z-index: 1010;
+}
+
+.lightbox-arrow.left {
+  left: 14px;
+}
+
+.lightbox-arrow.right {
+  right: 14px;
+}
+
+.lightbox-arrow:active {
+  background: var(--card-border-focus);
+  color: var(--accent-cyan);
+}
+
+
