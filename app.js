@@ -40,7 +40,23 @@ const DEFAULT_EXERCISES = [
   { id: 'standing_calf_raises', name: 'CALF RAISE MACHINE', split: 'LEGS', muscle: 'CALVES', defaultWeight: 60.0, defaultReps: 15, images: ['Standing_Calf_Raises/0.jpg', 'Standing_Calf_Raises/1.jpg'] }
 ];
 
-// State Management
+// State Management with auto-healing image paths
+function getInitialExercises() {
+  const cached = localStorage.getItem('iron_exercises');
+  if (!cached) return DEFAULT_EXERCISES;
+  try {
+    const list = JSON.parse(cached);
+    // Auto-heal: Ensure every exercise has its images from DEFAULT_EXERCISES or dataset
+    return list.map(item => {
+      if (item.images && item.images.length > 0) return item;
+      const def = DEFAULT_EXERCISES.find(d => d.id === item.id || d.name === item.name);
+      return def ? { ...item, images: def.images } : item;
+    });
+  } catch (e) {
+    return DEFAULT_EXERCISES;
+  }
+}
+
 const STATE = {
   token: localStorage.getItem('iron_token') || null,
   sessionUser: localStorage.getItem('iron_user') || null,
@@ -50,7 +66,7 @@ const STATE = {
   currentWeight: 50.0,
   currentReps: 10,
   logs: JSON.parse(localStorage.getItem('iron_logs') || '[]'),
-  exercises: JSON.parse(localStorage.getItem('iron_exercises') || JSON.stringify(DEFAULT_EXERCISES)),
+  exercises: getInitialExercises(),
   fullDataset: [],
   lastFinishedSplit: localStorage.getItem('iron_last_finished_split') || null,
   lastFinishedDate: localStorage.getItem('iron_last_finished_date') || null
