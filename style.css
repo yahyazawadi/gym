@@ -406,6 +406,46 @@ input::placeholder {
   background: #050608;
 }
 
+/* Video Guide Button */
+.video-guide-wrap {
+  margin-bottom: 12px;
+}
+
+.btn-yt-guide {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--input-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text-dim);
+  padding: 8px 12px;
+  border-radius: 3px;
+  text-decoration: none;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+
+.btn-yt-guide:hover,
+.btn-yt-guide:active {
+  border-color: #ff0000;
+  color: var(--text);
+  background: rgba(255, 0, 0, 0.06);
+}
+
+.yt-icon {
+  width: 16px;
+  height: 16px;
+  color: #ff0000;
+  flex-shrink: 0;
+}
+
+.yt-arrow {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
 .card-sets-count {
   font-size: 0.7rem;
   color: var(--muted);

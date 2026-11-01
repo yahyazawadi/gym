@@ -110,6 +110,7 @@ const valWeight = document.getElementById('val-weight');
 const valReps = document.getElementById('val-reps');
 const todaySetsPills = document.getElementById('today-sets-pills');
 const btnSaveSet = document.getElementById('btn-save-set');
+const btnYtGuide = document.getElementById('btn-yt-guide');
 
 // DOM References: Add Machine Drawer
 const btnOpenAddMachine = document.getElementById('btn-open-add-machine');
@@ -425,6 +426,10 @@ function openDrawer(exercise) {
   } else {
     drawerPhotoWrap.style.display = 'none';
   }
+
+  // Set direct YouTube Form Guide URL
+  const searchQuery = encodeURIComponent(`${exercise.name.toLowerCase()} exercise form machine proper tutorial`);
+  btnYtGuide.href = `https://www.youtube.com/results?search_query=${searchQuery}`;
 
   const last = getLastLog(exercise.id);
   const today = getTodayLogs(exercise.id);
