@@ -580,3 +580,205 @@ input::placeholder {
 .log-action-btn:active {
   opacity: 0.85;
 }
+
+/* ==========================================================================
+   Schedule Banner & Missed Day Catch-up
+   ========================================================================== */
+.schedule-banner {
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid var(--accent-cyan);
+  border-radius: 4px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.schedule-banner.missed {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: #ef4444;
+}
+
+.banner-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent-cyan);
+}
+
+.schedule-banner.missed .banner-title {
+  color: #ef4444;
+}
+
+.banner-desc {
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  line-height: 1.3;
+}
+
+.banner-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.banner-btn {
+  background: var(--input-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text);
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.banner-btn.primary {
+  background: var(--accent-cyan);
+  color: #000000;
+  border-color: var(--accent-cyan);
+}
+
+/* Routine Meta Bar */
+.routine-meta-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 0 2px;
+}
+
+.routine-progress {
+  font-size: 0.65rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+
+.btn-subtle {
+  background: transparent;
+  border: 1px dashed var(--card-border-focus);
+  color: var(--accent-cyan);
+  font-size: 0.65rem;
+  padding: 4px 8px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.btn-subtle:active {
+  background: rgba(56, 189, 248, 0.1);
+}
+
+/* Session Footer & Finish Button */
+.session-footer {
+  position: sticky;
+  bottom: 0;
+  padding-top: 14px;
+  background: linear-gradient(to top, var(--bg) 80%, transparent);
+}
+
+.btn-finish-workout {
+  width: 100%;
+  padding: 14px 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border-radius: 4px;
+  border: 1px solid var(--card-border);
+  background: var(--card);
+  color: var(--muted);
+  cursor: not-allowed;
+  transition: all 0.2s ease;
+}
+
+.btn-finish-workout.active {
+  background: var(--accent-cyan);
+  color: #000000;
+  border-color: var(--accent-cyan);
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+}
+
+.btn-finish-workout.active:active {
+  transform: scale(0.99);
+}
+
+/* Add Machine List */
+.add-machine-list {
+  max-height: 55vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-right: 4px;
+}
+
+.add-machine-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  padding: 10px 12px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.add-machine-item:active {
+  border-color: var(--accent-cyan);
+}
+
+.add-item-name {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.add-item-tag {
+  font-size: 0.6rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+/* Summary Modal */
+.summary-stats-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.summary-metric {
+  background: var(--input-bg);
+  border: 1px solid var(--card-border);
+  padding: 12px 10px;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.metric-val {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+}
+
+.metric-label {
+  font-size: 0.58rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  margin-top: 4px;
+}
+
+.summary-next-box {
+  background: var(--card);
+  border: 1px dashed var(--line);
+  padding: 12px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  margin-bottom: 16px;
+  letter-spacing: 0.06em;
+}
+

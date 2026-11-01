@@ -2,10 +2,17 @@
  * Minimal Brutalist Gym PWA Core Logic
  * Pure Vanilla JavaScript (ESM)
  * Remote Session Authentication via Cloudflare Workers + D1
- * Offline-first fallback cache
+ * Offline-first fallback cache & Service Worker
  */
 
 const API_BASE = 'https://gym-pwa.super-yahyaaa.workers.dev';
+
+// Default Calendar Matrix: 0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat
+const CALENDAR_SCHEDULE = {
+  1: 'PUSH', // Mon
+  3: 'PULL', // Wed
+  5: 'LEGS'  // Fri
+};
 
 // Initial Seed Machines (Curated Machines & Cables)
 const DEFAULT_EXERCISES = [
@@ -43,7 +50,10 @@ const STATE = {
   currentWeight: 50.0,
   currentReps: 10,
   logs: JSON.parse(localStorage.getItem('iron_logs') || '[]'),
-  exercises: JSON.parse(localStorage.getItem('iron_exercises') || JSON.stringify(DEFAULT_EXERCISES))
+  exercises: JSON.parse(localStorage.getItem('iron_exercises') || JSON.stringify(DEFAULT_EXERCISES)),
+  fullDataset: [],
+  lastFinishedSplit: localStorage.getItem('iron_last_finished_split') || null,
+  lastFinishedDate: localStorage.getItem('iron_last_finished_date') || null
 };
 
 // DOM References: Views
@@ -62,10 +72,16 @@ const authErrorMsg = document.getElementById('auth-error-msg');
 const btnLogin = document.getElementById('btn-login');
 const btnLogout = document.getElementById('btn-logout');
 
-// DOM References: Workout
+// DOM References: Workout & Navigation
 const connectionStatus = document.getElementById('connection-status');
+const currentDateEl = document.getElementById('current-date');
+const scheduleBanner = document.getElementById('schedule-banner');
 const splitNav = document.getElementById('split-nav');
+const routineProgress = document.getElementById('routine-progress');
 const exerciseList = document.getElementById('exercise-list');
+const btnFinishWorkout = document.getElementById('btn-finish-workout');
+
+// DOM References: Drawers
 const drawerOverlay = document.getElementById('drawer-overlay');
 const drawerClose = document.getElementById('drawer-close');
 const drawerTitle = document.getElementById('drawer-title');
@@ -75,7 +91,41 @@ const valWeight = document.getElementById('val-weight');
 const valReps = document.getElementById('val-reps');
 const todaySetsPills = document.getElementById('today-sets-pills');
 const btnSaveSet = document.getElementById('btn-save-set');
-const currentDateEl = document.getElementById('current-date');
+
+// DOM References: Add Machine Drawer
+const btnOpenAddMachine = document.getElementById('btn-open-add-machine');
+const addMachineOverlay = document.getElementById('add-machine-overlay');
+const addMachineClose = document.getElementById('add-machine-close');
+const machineSearchInput = document.getElementById('machine-search-input');
+const addMachineList = document.getElementById('add-machine-list');
+
+// DOM References: Summary Celebration Drawer
+const summaryOverlay = document.getElementById('summary-overlay');
+const summaryClose = document.getElementById('summary-close');
+const summaryTitle = document.getElementById('summary-title');
+const sumVolume = document.getElementById('sum-volume');
+const sumSets = document.getElementById('sum-sets');
+const summaryNextText = document.getElementById('summary-next-text');
+const btnCloseSummary = document.getElementById('btn-close-summary');
+
+// Register Service Worker for true offline capability
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  });
+}
+
+// Load full 138 machine dataset from local bundle
+async function loadFullDataset() {
+  try {
+    const res = await fetch('./exercises_dataset.json');
+    if (res.ok) {
+      STATE.fullDataset = await res.json();
+    }
+  } catch (err) {
+    console.warn('Dataset offline buffer active');
+  }
+}
 
 // Switch between Login Page and Workout Dashboard
 function syncViewState() {
@@ -83,6 +133,7 @@ function syncViewState() {
     authView.style.display = 'none';
     workoutView.style.display = 'flex';
     initDate();
+    evaluateCalendarSchedule();
     renderCards();
     syncLogsFromServer();
   } else {
@@ -104,7 +155,104 @@ function initDate() {
   const d = new Date();
   const day = String(d.getDate()).padStart(2, '0');
   const month = String(d.getMonth() + 1).padStart(2, '0');
-  currentDateEl.textContent = `${day}/${month}`;
+  const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+  currentDateEl.textContent = `${days[d.getDay()]} ${day}/${month}`;
+}
+
+// Smart Schedule Resolver: Evaluate today's schedule, missed days, or rest days
+function evaluateCalendarSchedule() {
+  const now = new Date();
+  const dayOfWeek = now.getDay(); // 0 = Sun, 1 = Mon ...
+  const todayStr = now.toISOString().slice(0, 10);
+  const scheduledSplit = CALENDAR_SCHEDULE[dayOfWeek] || null;
+
+  // Check if today's workout was already finished
+  if (STATE.lastFinishedDate === todayStr) {
+    scheduleBanner.style.display = 'flex';
+    scheduleBanner.className = 'schedule-banner';
+    const nextSplit = getNextSequentialSplit(STATE.lastFinishedSplit);
+    scheduleBanner.innerHTML = `
+      <span class="banner-title">✓ TODAY'S ${STATE.lastFinishedSplit} SESSION COMPLETED</span>
+      <span class="banner-desc">Rest and recover. Up next is ${nextSplit}.</span>
+    `;
+    setSplit(nextSplit);
+    return;
+  }
+
+  // If today is a scheduled day (Mon/Wed/Fri)
+  if (scheduledSplit) {
+    scheduleBanner.style.display = 'flex';
+    scheduleBanner.className = 'schedule-banner';
+    scheduleBanner.innerHTML = `
+      <span class="banner-title">TODAY'S SCHEDULE: ${scheduledSplit} DAY</span>
+      <span class="banner-desc">Ready to train. Log sets on each machine below.</span>
+    `;
+    setSplit(scheduledSplit);
+    return;
+  }
+
+  // Today is an off/rest day (Tue, Thu, Sat, Sun). Check if previous scheduled day was missed!
+  const prevScheduled = findPreviousScheduledSplit(dayOfWeek);
+  if (prevScheduled && STATE.lastFinishedSplit !== prevScheduled.split) {
+    scheduleBanner.style.display = 'flex';
+    scheduleBanner.className = 'schedule-banner missed';
+    scheduleBanner.innerHTML = `
+      <span class="banner-title">⚠️ MISSED SESSION DETECTED</span>
+      <span class="banner-desc">You missed ${prevScheduled.split} from ${prevScheduled.dayName}. Resume it today or rest?</span>
+      <div class="banner-actions">
+        <button class="banner-btn primary" id="btn-catchup">CATCH-UP ${prevScheduled.split}</button>
+        <button class="banner-btn" id="btn-skip-rest">STICK TO REST</button>
+      </div>
+    `;
+
+    document.getElementById('btn-catchup')?.addEventListener('click', () => {
+      setSplit(prevScheduled.split);
+      scheduleBanner.style.display = 'none';
+    });
+
+    document.getElementById('btn-skip-rest')?.addEventListener('click', () => {
+      const next = getNextSequentialSplit(prevScheduled.split);
+      scheduleBanner.style.display = 'none';
+      setSplit(next);
+    });
+
+    setSplit(prevScheduled.split);
+    return;
+  }
+
+  // Normal Rest Day
+  const nextSplit = getNextSequentialSplit(STATE.lastFinishedSplit || 'LEGS');
+  scheduleBanner.style.display = 'flex';
+  scheduleBanner.className = 'schedule-banner';
+  scheduleBanner.innerHTML = `
+    <span class="banner-title">REST // RECOVERY DAY</span>
+    <span class="banner-desc">No workouts scheduled today. Up next: ${nextSplit}.</span>
+  `;
+  setSplit(nextSplit);
+}
+
+function findPreviousScheduledSplit(currentDayOfWeek) {
+  const dayNames = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
+  for (let d = currentDayOfWeek - 1; d >= 0; d--) {
+    if (CALENDAR_SCHEDULE[d]) {
+      return { split: CALENDAR_SCHEDULE[d], dayName: dayNames[d] };
+    }
+  }
+  return null;
+}
+
+function getNextSequentialSplit(current) {
+  if (current === 'PUSH') return 'PULL';
+  if (current === 'PULL') return 'LEGS';
+  return 'PUSH';
+}
+
+function setSplit(split) {
+  STATE.currentSplit = split;
+  document.querySelectorAll('.split-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.split === split);
+  });
+  renderCards();
 }
 
 // Verify active session with Edge Worker
@@ -120,13 +268,11 @@ async function verifySession() {
     });
     const data = await res.json();
     if (!res.ok || !data.valid) {
-      // Token invalid or expired
       clearSession();
     } else {
       connectionStatus.textContent = `SYNCED // ${data.user.username.toUpperCase()}`;
     }
   } catch (err) {
-    // Offline mode: Keep going with local cache
     connectionStatus.textContent = 'OFFLINE // LOCAL CACHE';
   }
 }
@@ -142,7 +288,6 @@ async function syncLogsFromServer() {
     if (res.ok) {
       const data = await res.json();
       if (data.logs && Array.isArray(data.logs)) {
-        // Map D1 rows to client log objects
         STATE.logs = data.logs.map(l => ({
           id: l.id,
           exerciseId: l.exercise_id,
@@ -179,9 +324,17 @@ function renderCards() {
     ? STATE.exercises
     : STATE.exercises.filter(e => e.split === STATE.currentSplit);
 
+  let machinesWithSetsToday = 0;
+  let totalSetsToday = 0;
+
   filtered.forEach(ex => {
     const last = getLastLog(ex.id);
     const today = getTodayLogs(ex.id);
+
+    if (today.length > 0) {
+      machinesWithSetsToday++;
+      totalSetsToday += today.length;
+    }
 
     const card = document.createElement('div');
     card.className = 'exercise-card';
@@ -199,6 +352,20 @@ function renderCards() {
     card.addEventListener('click', () => openDrawer(ex));
     exerciseList.appendChild(card);
   });
+
+  // Update routine progress bar
+  routineProgress.textContent = `${machinesWithSetsToday}/${filtered.length} MACHINES LOGGED (${totalSetsToday} SETS)`;
+
+  // Update Finish Workout button status
+  if (totalSetsToday > 0) {
+    btnFinishWorkout.disabled = false;
+    btnFinishWorkout.classList.add('active');
+    btnFinishWorkout.textContent = `FINISH ${STATE.currentSplit} WORKOUT (${totalSetsToday} SETS)`;
+  } else {
+    btnFinishWorkout.disabled = true;
+    btnFinishWorkout.classList.remove('active');
+    btnFinishWorkout.textContent = 'FINISH WORKOUT (LOG SETS FIRST)';
+  }
 }
 
 // Open Quick-Log Drawer
@@ -215,9 +382,9 @@ function openDrawer(exercise) {
     STATE.currentWeight = last.weight;
     STATE.currentReps = last.reps;
   } else {
-    drawerLastStat.innerHTML = `BASELINE: <span>${exercise.defaultWeight} KG × ${exercise.defaultReps} REPS</span>`;
-    STATE.currentWeight = exercise.defaultWeight;
-    STATE.currentReps = exercise.defaultReps;
+    drawerLastStat.innerHTML = `BASELINE: <span>${exercise.defaultWeight || 50.0} KG × ${exercise.defaultReps || 10} REPS</span>`;
+    STATE.currentWeight = exercise.defaultWeight || 50.0;
+    STATE.currentReps = exercise.defaultReps || 10;
   }
 
   updateStepperDisplay();
@@ -287,9 +454,108 @@ async function saveCurrentSet() {
         'Authorization': `Bearer ${STATE.token}`
       },
       body: JSON.stringify(newLog)
-    }).catch(err => console.warn('Queued log locally (offline)'));
+    }).catch(() => console.warn('Queued log locally (offline)'));
   }
 }
+
+// Finish Workout: Lock in session, calculate volume, and auto-advance
+function finishWorkoutSession() {
+  const todayStr = new Date().toISOString().slice(0, 10);
+  const todayLogs = STATE.logs.filter(l => l.timestamp.startsWith(todayStr));
+
+  if (todayLogs.length === 0) return;
+
+  let totalVolume = 0;
+  todayLogs.forEach(l => {
+    totalVolume += (l.weight * l.reps);
+  });
+
+  // Record completed split
+  STATE.lastFinishedSplit = STATE.currentSplit;
+  STATE.lastFinishedDate = todayStr;
+  localStorage.setItem('iron_last_finished_split', STATE.lastFinishedSplit);
+  localStorage.setItem('iron_last_finished_date', STATE.lastFinishedDate);
+
+  if (navigator.vibrate) {
+    navigator.vibrate([60, 40, 60]);
+  }
+
+  // Show summary modal
+  summaryTitle.textContent = `${STATE.currentSplit} DAY COMPLETED`;
+  sumVolume.textContent = Math.round(totalVolume).toLocaleString();
+  sumSets.textContent = todayLogs.length;
+
+  const nextSplit = getNextSequentialSplit(STATE.currentSplit);
+  summaryNextText.textContent = `NEXT UP: ${nextSplit} DAY`;
+  summaryOverlay.classList.add('open');
+
+  evaluateCalendarSchedule();
+}
+
+// Add Machine Drawer Handling
+function openAddMachineModal() {
+  renderAddMachineList('');
+  addMachineOverlay.classList.add('open');
+  machineSearchInput.value = '';
+  machineSearchInput.focus();
+}
+
+function closeAddMachineModal() {
+  addMachineOverlay.classList.remove('open');
+}
+
+function renderAddMachineList(filterText) {
+  addMachineList.innerHTML = '';
+  const search = filterText.toLowerCase().trim();
+
+  const dataset = STATE.fullDataset.length > 0 ? STATE.fullDataset : DEFAULT_EXERCISES;
+  const filtered = dataset.filter(ex => {
+    return ex.name.toLowerCase().includes(search) || ex.muscle.toLowerCase().includes(search);
+  });
+
+  if (filtered.length === 0) {
+    addMachineList.innerHTML = '<div style="font-size:0.75rem; color:var(--muted); padding:10px;">NO MATCHING MACHINES FOUND</div>';
+    return;
+  }
+
+  filtered.slice(0, 30).forEach(ex => {
+    const isAlreadyInRoutine = STATE.exercises.some(e => e.id === ex.id);
+
+    const item = document.createElement('div');
+    item.className = 'add-machine-item';
+    item.innerHTML = `
+      <div>
+        <div class="add-item-name">${ex.name}</div>
+        <div class="add-item-tag">${ex.equipment} // ${ex.muscle}</div>
+      </div>
+      <button class="banner-btn ${isAlreadyInRoutine ? '' : 'primary'}">
+        ${isAlreadyInRoutine ? 'ADDED' : '+ ADD'}
+      </button>
+    `;
+
+    if (!isAlreadyInRoutine) {
+      item.addEventListener('click', () => {
+        STATE.exercises.push({
+          id: ex.id,
+          name: ex.name,
+          split: STATE.currentSplit === 'ALL' ? ex.split : STATE.currentSplit,
+          muscle: ex.muscle,
+          defaultWeight: 40.0,
+          defaultReps: 10
+        });
+        localStorage.setItem('iron_exercises', JSON.stringify(STATE.exercises));
+        renderCards();
+        closeAddMachineModal();
+      });
+    }
+
+    addMachineList.appendChild(item);
+  });
+}
+
+machineSearchInput.addEventListener('input', (e) => {
+  renderAddMachineList(e.target.value);
+});
 
 // Switch between Login and Register Mode
 function setAuthMode(mode) {
@@ -352,7 +618,6 @@ authForm.addEventListener('submit', async (e) => {
       return;
     }
 
-    // Persist permanent session
     STATE.token = data.token;
     STATE.sessionUser = data.user.username;
     localStorage.setItem('iron_token', data.token);
@@ -362,7 +627,7 @@ authForm.addEventListener('submit', async (e) => {
     btnLogin.disabled = false;
     syncViewState();
   } catch (err) {
-    // If backend is unreachable, fallback to local standalone session
+    // Offline fallback token
     STATE.sessionUser = username;
     STATE.token = 'local_fallback_tok';
     localStorage.setItem('iron_user', username);
@@ -397,19 +662,15 @@ function clearSession() {
       headers: { 'Authorization': `Bearer ${STATE.token}` }
     }).catch(() => {});
   }
-  // Wipe session memory and tokens
   STATE.token = null;
   STATE.sessionUser = null;
   localStorage.removeItem('iron_token');
   localStorage.removeItem('iron_user');
 
-  // Close quick-log drawer if open
   closeDrawer();
-
-  // Reset to default login mode
+  closeAddMachineModal();
+  summaryOverlay.classList.remove('open');
   setAuthMode('login');
-
-  // Direct immediately into login page
   syncViewState();
 }
 
@@ -433,19 +694,28 @@ document.querySelectorAll('.step-btn').forEach(btn => {
 // Event Listeners: Splits
 splitNav.addEventListener('click', (e) => {
   if (!e.target.classList.contains('split-tab')) return;
-  document.querySelectorAll('.split-tab').forEach(t => t.classList.remove('active'));
-  e.target.classList.add('active');
-  STATE.currentSplit = e.target.dataset.split;
-  renderCards();
+  setSplit(e.target.dataset.split);
 });
 
-// Event Listeners: Drawer
+// Event Listeners: Drawers
 drawerClose.addEventListener('click', closeDrawer);
 drawerOverlay.addEventListener('click', (e) => {
   if (e.target === drawerOverlay) closeDrawer();
 });
 btnSaveSet.addEventListener('click', saveCurrentSet);
 
+btnFinishWorkout.addEventListener('click', finishWorkoutSession);
+
+btnOpenAddMachine.addEventListener('click', openAddMachineModal);
+addMachineClose.addEventListener('click', closeAddMachineModal);
+addMachineOverlay.addEventListener('click', (e) => {
+  if (e.target === addMachineOverlay) closeAddMachineModal();
+});
+
+summaryClose.addEventListener('click', () => summaryOverlay.classList.remove('open'));
+btnCloseSummary.addEventListener('click', () => summaryOverlay.classList.remove('open'));
+
 // Initial Launch Sequence
+loadFullDataset();
 syncViewState();
 verifySession();

@@ -1,0 +1,1520 @@
+[
+  {
+    "id": "Ab_Crunch_Machine",
+    "name": "AB CRUNCH MACHINE",
+    "split": "PULL",
+    "equipment": "MACHINE",
+    "muscle": "ABDOMINALS",
+    "images": [
+      "Ab_Crunch_Machine/0.jpg",
+      "Ab_Crunch_Machine/1.jpg"
+    ]
+  },
+  {
+    "id": "Alternating_Cable_Shoulder_Press",
+    "name": "ALTERNATING CABLE SHOULDER PRESS",
+    "split": "PUSH",
+    "equipment": "CABLE",
+    "muscle": "SHOULDERS",
+    "images": [
+      "Alternating_Cable_Shoulder_Press/0.jpg",
+      "Alternating_Cable_Shoulder_Press/1.jpg"
+    ]
+  },
+  {
+    "id": "Bent_Over_Low-Pulley_Side_Lateral",
+    "name": "BENT OVER LOW-PULLEY SIDE LATERAL",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "SHOULDERS",
+    "images": [
+      "Bent_Over_Low-Pulley_Side_Lateral/0.jpg",
+      "Bent_Over_Low-Pulley_Side_Lateral/1.jpg"
+    ]
+  },
+  {
+    "id": "Bosu_Ball_Cable_Crunch_With_Side_Bends",
+    "name": "BOSU BALL CABLE CRUNCH WITH SIDE BENDS",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "ABDOMINALS",
+    "images": [
+      "Bosu_Ball_Cable_Crunch_With_Side_Bends/0.jpg",
+      "Bosu_Ball_Cable_Crunch_With_Side_Bends/1.jpg"
+    ]
+  },
+  {
+    "id": "Butterfly",
+    "name": "BUTTERFLY",
+    "split": "PULL",
+    "equipment": "MACHINE",
+    "muscle": "CHEST",
+    "images": [
+      "Butterfly/0.jpg",
+      "Butterfly/1.jpg"
+    ]
+  },
+  {
+    "id": "Cable_Chest_Press",
+    "name": "CABLE CHEST PRESS",
+    "split": "PUSH",
+    "equipment": "CABLE",
+    "muscle": "CHEST",
+    "images": [
+      "Cable_Chest_Press/0.jpg",
+      "Cable_Chest_Press/1.jpg"
+    ]
+  },
+  {
+    "id": "Cable_Crossover",
+    "name": "CABLE CROSSOVER",
+    "split": "PUSH",
+    "equipment": "CABLE",
+    "muscle": "CHEST",
+    "images": [
+      "Cable_Crossover/0.jpg",
+      "Cable_Crossover/1.jpg"
+    ]
+  },
+  {
+    "id": "Cable_Crunch",
+    "name": "CABLE CRUNCH",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "ABDOMINALS",
+    "images": [
+      "Cable_Crunch/0.jpg",
+      "Cable_Crunch/1.jpg"
+    ]
+  },
+  {
+    "id": "Cable_Deadlifts",
+    "name": "CABLE DEADLIFTS",
+    "split": "LEGS",
+    "equipment": "CABLE",
+    "muscle": "QUADRICEPS",
+    "images": [
+      "Cable_Deadlifts/0.jpg",
+      "Cable_Deadlifts/1.jpg"
+    ]
+  },
+  {
+    "id": "Cable_Hammer_Curls_-_Rope_Attachment",
+    "name": "CABLE HAMMER CURLS - ROPE ATTACHMENT",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "BICEPS",
+    "images": [
+      "Cable_Hammer_Curls_-_Rope_Attachment/0.jpg",
+      "Cable_Hammer_Curls_-_Rope_Attachment/1.jpg"
+    ]
+  },
+  {
+    "id": "Cable_Hip_Adduction",
+    "name": "CABLE HIP ADDUCTION",
+    "split": "LEGS",
+    "equipment": "CABLE",
+    "muscle": "QUADRICEPS",
+    "images": [
+      "Cable_Hip_Adduction/0.jpg",
+      "Cable_Hip_Adduction/1.jpg"
+    ]
+  },
+  {
+    "id": "Cable_Incline_Pushdown",
+    "name": "CABLE INCLINE PUSHDOWN",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "LATS",
+    "images": [
+      "Cable_Incline_Pushdown/0.jpg",
+      "Cable_Incline_Pushdown/1.jpg"
+    ]
+  },
+  {
+    "id": "Cable_Incline_Triceps_Extension",
+    "name": "CABLE INCLINE TRICEPS EXTENSION",
+    "split": "PUSH",
+    "equipment": "CABLE",
+    "muscle": "TRICEPS",
+    "images": [
+      "Cable_Incline_Triceps_Extension/0.jpg",
+      "Cable_Incline_Triceps_Extension/1.jpg"
+    ]
+  },
+  {
+    "id": "Cable_Internal_Rotation",
+    "name": "CABLE INTERNAL ROTATION",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "SHOULDERS",
+    "images": [
+      "Cable_Internal_Rotation/0.jpg",
+      "Cable_Internal_Rotation/1.jpg"
+    ]
+  },
+  {
+    "id": "Cable_Iron_Cross",
+    "name": "CABLE IRON CROSS",
+    "split": "PUSH",
+    "equipment": "CABLE",
+    "muscle": "CHEST",
+    "images": [
+      "Cable_Iron_Cross/0.jpg",
+      "Cable_Iron_Cross/1.jpg"
+    ]
+  },
+  {
+    "id": "Cable_Judo_Flip",
+    "name": "CABLE JUDO FLIP",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "ABDOMINALS",
+    "images": [
+      "Cable_Judo_Flip/0.jpg",
+      "Cable_Judo_Flip/1.jpg"
+    ]
+  },
+  {
+    "id": "Cable_Lying_Triceps_Extension",
+    "name": "CABLE LYING TRICEPS EXTENSION",
+    "split": "PUSH",
+    "equipment": "CABLE",
+    "muscle": "TRICEPS",
+    "images": [
+      "Cable_Lying_Triceps_Extension/0.jpg",
+      "Cable_Lying_Triceps_Extension/1.jpg"
+    ]
+  },
+  {
+    "id": "Cable_One_Arm_Tricep_Extension",
+    "name": "CABLE ONE ARM TRICEP EXTENSION",
+    "split": "PUSH",
+    "equipment": "CABLE",
+    "muscle": "TRICEPS",
+    "images": [
+      "Cable_One_Arm_Tricep_Extension/0.jpg",
+      "Cable_One_Arm_Tricep_Extension/1.jpg"
+    ]
+  },
+  {
+    "id": "Cable_Preacher_Curl",
+    "name": "CABLE PREACHER CURL",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "BICEPS",
+    "images": [
+      "Cable_Preacher_Curl/0.jpg",
+      "Cable_Preacher_Curl/1.jpg"
+    ]
+  },
+  {
+    "id": "Cable_Rear_Delt_Fly",
+    "name": "CABLE REAR DELT FLY",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "SHOULDERS",
+    "images": [
+      "Cable_Rear_Delt_Fly/0.jpg",
+      "Cable_Rear_Delt_Fly/1.jpg"
+    ]
+  },
+  {
+    "id": "Cable_Reverse_Crunch",
+    "name": "CABLE REVERSE CRUNCH",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "ABDOMINALS",
+    "images": [
+      "Cable_Reverse_Crunch/0.jpg",
+      "Cable_Reverse_Crunch/1.jpg"
+    ]
+  },
+  {
+    "id": "Cable_Rope_Overhead_Triceps_Extension",
+    "name": "CABLE ROPE OVERHEAD TRICEPS EXTENSION",
+    "split": "PUSH",
+    "equipment": "CABLE",
+    "muscle": "TRICEPS",
+    "images": [
+      "Cable_Rope_Overhead_Triceps_Extension/0.jpg",
+      "Cable_Rope_Overhead_Triceps_Extension/1.jpg"
+    ]
+  },
+  {
+    "id": "Cable_Rope_Rear-Delt_Rows",
+    "name": "CABLE ROPE REAR-DELT ROWS",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "SHOULDERS",
+    "images": [
+      "Cable_Rope_Rear-Delt_Rows/0.jpg",
+      "Cable_Rope_Rear-Delt_Rows/1.jpg"
+    ]
+  },
+  {
+    "id": "Cable_Russian_Twists",
+    "name": "CABLE RUSSIAN TWISTS",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "ABDOMINALS",
+    "images": [
+      "Cable_Russian_Twists/0.jpg",
+      "Cable_Russian_Twists/1.jpg"
+    ]
+  },
+  {
+    "id": "Cable_Seated_Crunch",
+    "name": "CABLE SEATED CRUNCH",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "ABDOMINALS",
+    "images": [
+      "Cable_Seated_Crunch/0.jpg",
+      "Cable_Seated_Crunch/1.jpg"
+    ]
+  },
+  {
+    "id": "Cable_Seated_Lateral_Raise",
+    "name": "CABLE SEATED LATERAL RAISE",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "SHOULDERS",
+    "images": [
+      "Cable_Seated_Lateral_Raise/0.jpg",
+      "Cable_Seated_Lateral_Raise/1.jpg"
+    ]
+  },
+  {
+    "id": "Cable_Shoulder_Press",
+    "name": "CABLE SHOULDER PRESS",
+    "split": "PUSH",
+    "equipment": "CABLE",
+    "muscle": "SHOULDERS",
+    "images": [
+      "Cable_Shoulder_Press/0.jpg",
+      "Cable_Shoulder_Press/1.jpg"
+    ]
+  },
+  {
+    "id": "Cable_Shrugs",
+    "name": "CABLE SHRUGS",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "TRAPS",
+    "images": [
+      "Cable_Shrugs/0.jpg",
+      "Cable_Shrugs/1.jpg"
+    ]
+  },
+  {
+    "id": "Cable_Wrist_Curl",
+    "name": "CABLE WRIST CURL",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "FOREARMS",
+    "images": [
+      "Cable_Wrist_Curl/0.jpg",
+      "Cable_Wrist_Curl/1.jpg"
+    ]
+  },
+  {
+    "id": "Calf-Machine_Shoulder_Shrug",
+    "name": "CALF-MACHINE SHOULDER SHRUG",
+    "split": "PULL",
+    "equipment": "MACHINE",
+    "muscle": "TRAPS",
+    "images": [
+      "Calf-Machine_Shoulder_Shrug/0.jpg",
+      "Calf-Machine_Shoulder_Shrug/1.jpg"
+    ]
+  },
+  {
+    "id": "Calf_Press",
+    "name": "CALF PRESS",
+    "split": "LEGS",
+    "equipment": "MACHINE",
+    "muscle": "CALVES",
+    "images": [
+      "Calf_Press/0.jpg",
+      "Calf_Press/1.jpg"
+    ]
+  },
+  {
+    "id": "Calf_Press_On_The_Leg_Press_Machine",
+    "name": "CALF PRESS ON THE LEG PRESS MACHINE",
+    "split": "LEGS",
+    "equipment": "MACHINE",
+    "muscle": "CALVES",
+    "images": [
+      "Calf_Press_On_The_Leg_Press_Machine/0.jpg",
+      "Calf_Press_On_The_Leg_Press_Machine/1.jpg"
+    ]
+  },
+  {
+    "id": "Chair_Squat",
+    "name": "CHAIR SQUAT",
+    "split": "LEGS",
+    "equipment": "MACHINE",
+    "muscle": "QUADRICEPS",
+    "images": [
+      "Chair_Squat/0.jpg",
+      "Chair_Squat/1.jpg"
+    ]
+  },
+  {
+    "id": "Close-Grip_Front_Lat_Pulldown",
+    "name": "CLOSE-GRIP FRONT LAT PULLDOWN",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "LATS",
+    "images": [
+      "Close-Grip_Front_Lat_Pulldown/0.jpg",
+      "Close-Grip_Front_Lat_Pulldown/1.jpg"
+    ]
+  },
+  {
+    "id": "Decline_Smith_Press",
+    "name": "DECLINE SMITH PRESS",
+    "split": "PUSH",
+    "equipment": "MACHINE",
+    "muscle": "CHEST",
+    "images": [
+      "Decline_Smith_Press/0.jpg",
+      "Decline_Smith_Press/1.jpg"
+    ]
+  },
+  {
+    "id": "Dip_Machine",
+    "name": "DIP MACHINE",
+    "split": "PUSH",
+    "equipment": "MACHINE",
+    "muscle": "TRICEPS",
+    "images": [
+      "Dip_Machine/0.jpg",
+      "Dip_Machine/1.jpg"
+    ]
+  },
+  {
+    "id": "Elevated_Cable_Rows",
+    "name": "ELEVATED CABLE ROWS",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "LATS",
+    "images": [
+      "Elevated_Cable_Rows/0.jpg",
+      "Elevated_Cable_Rows/1.jpg"
+    ]
+  },
+  {
+    "id": "External_Rotation_with_Cable",
+    "name": "EXTERNAL ROTATION WITH CABLE",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "SHOULDERS",
+    "images": [
+      "External_Rotation_with_Cable/0.jpg",
+      "External_Rotation_with_Cable/1.jpg"
+    ]
+  },
+  {
+    "id": "Face_Pull",
+    "name": "FACE PULL",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "SHOULDERS",
+    "images": [
+      "Face_Pull/0.jpg",
+      "Face_Pull/1.jpg"
+    ]
+  },
+  {
+    "id": "Flat_Bench_Cable_Flyes",
+    "name": "FLAT BENCH CABLE FLYES",
+    "split": "PUSH",
+    "equipment": "CABLE",
+    "muscle": "CHEST",
+    "images": [
+      "Flat_Bench_Cable_Flyes/0.jpg",
+      "Flat_Bench_Cable_Flyes/1.jpg"
+    ]
+  },
+  {
+    "id": "Front_Cable_Raise",
+    "name": "FRONT CABLE RAISE",
+    "split": "PUSH",
+    "equipment": "CABLE",
+    "muscle": "SHOULDERS",
+    "images": [
+      "Front_Cable_Raise/0.jpg",
+      "Front_Cable_Raise/1.jpg"
+    ]
+  },
+  {
+    "id": "Full_Range-Of-Motion_Lat_Pulldown",
+    "name": "FULL RANGE-OF-MOTION LAT PULLDOWN",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "LATS",
+    "images": [
+      "Full_Range-Of-Motion_Lat_Pulldown/0.jpg",
+      "Full_Range-Of-Motion_Lat_Pulldown/1.jpg"
+    ]
+  },
+  {
+    "id": "Hack_Squat",
+    "name": "HACK SQUAT",
+    "split": "LEGS",
+    "equipment": "MACHINE",
+    "muscle": "QUADRICEPS",
+    "images": [
+      "Hack_Squat/0.jpg",
+      "Hack_Squat/1.jpg"
+    ]
+  },
+  {
+    "id": "High_Cable_Curls",
+    "name": "HIGH CABLE CURLS",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "BICEPS",
+    "images": [
+      "High_Cable_Curls/0.jpg",
+      "High_Cable_Curls/1.jpg"
+    ]
+  },
+  {
+    "id": "Incline_Cable_Chest_Press",
+    "name": "INCLINE CABLE CHEST PRESS",
+    "split": "PUSH",
+    "equipment": "CABLE",
+    "muscle": "CHEST",
+    "images": [
+      "Incline_Cable_Chest_Press/0.jpg",
+      "Incline_Cable_Chest_Press/1.jpg"
+    ]
+  },
+  {
+    "id": "Incline_Cable_Flye",
+    "name": "INCLINE CABLE FLYE",
+    "split": "PUSH",
+    "equipment": "CABLE",
+    "muscle": "CHEST",
+    "images": [
+      "Incline_Cable_Flye/0.jpg",
+      "Incline_Cable_Flye/1.jpg"
+    ]
+  },
+  {
+    "id": "Kneeling_Cable_Crunch_With_Alternating_Oblique_Twists",
+    "name": "KNEELING CABLE CRUNCH WITH ALTERNATING OBLIQUE TWISTS",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "ABDOMINALS",
+    "images": [
+      "Kneeling_Cable_Crunch_With_Alternating_Oblique_Twists/0.jpg",
+      "Kneeling_Cable_Crunch_With_Alternating_Oblique_Twists/1.jpg"
+    ]
+  },
+  {
+    "id": "Kneeling_Cable_Triceps_Extension",
+    "name": "KNEELING CABLE TRICEPS EXTENSION",
+    "split": "PUSH",
+    "equipment": "CABLE",
+    "muscle": "TRICEPS",
+    "images": [
+      "Kneeling_Cable_Triceps_Extension/0.jpg",
+      "Kneeling_Cable_Triceps_Extension/1.jpg"
+    ]
+  },
+  {
+    "id": "Kneeling_High_Pulley_Row",
+    "name": "KNEELING HIGH PULLEY ROW",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "LATS",
+    "images": [
+      "Kneeling_High_Pulley_Row/0.jpg",
+      "Kneeling_High_Pulley_Row/1.jpg"
+    ]
+  },
+  {
+    "id": "Kneeling_Single-Arm_High_Pulley_Row",
+    "name": "KNEELING SINGLE-ARM HIGH PULLEY ROW",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "LATS",
+    "images": [
+      "Kneeling_Single-Arm_High_Pulley_Row/0.jpg",
+      "Kneeling_Single-Arm_High_Pulley_Row/1.jpg"
+    ]
+  },
+  {
+    "id": "Leg_Extensions",
+    "name": "LEG EXTENSIONS",
+    "split": "LEGS",
+    "equipment": "MACHINE",
+    "muscle": "QUADRICEPS",
+    "images": [
+      "Leg_Extensions/0.jpg",
+      "Leg_Extensions/1.jpg"
+    ]
+  },
+  {
+    "id": "Leg_Press",
+    "name": "LEG PRESS",
+    "split": "LEGS",
+    "equipment": "MACHINE",
+    "muscle": "QUADRICEPS",
+    "images": [
+      "Leg_Press/0.jpg",
+      "Leg_Press/1.jpg"
+    ]
+  },
+  {
+    "id": "Leverage_Chest_Press",
+    "name": "LEVERAGE CHEST PRESS",
+    "split": "PUSH",
+    "equipment": "MACHINE",
+    "muscle": "CHEST",
+    "images": [
+      "Leverage_Chest_Press/0.jpg",
+      "Leverage_Chest_Press/1.jpg"
+    ]
+  },
+  {
+    "id": "Leverage_Deadlift",
+    "name": "LEVERAGE DEADLIFT",
+    "split": "LEGS",
+    "equipment": "MACHINE",
+    "muscle": "QUADRICEPS",
+    "images": [
+      "Leverage_Deadlift/0.jpg",
+      "Leverage_Deadlift/1.jpg"
+    ]
+  },
+  {
+    "id": "Leverage_Decline_Chest_Press",
+    "name": "LEVERAGE DECLINE CHEST PRESS",
+    "split": "PUSH",
+    "equipment": "MACHINE",
+    "muscle": "CHEST",
+    "images": [
+      "Leverage_Decline_Chest_Press/0.jpg",
+      "Leverage_Decline_Chest_Press/1.jpg"
+    ]
+  },
+  {
+    "id": "Leverage_High_Row",
+    "name": "LEVERAGE HIGH ROW",
+    "split": "PULL",
+    "equipment": "MACHINE",
+    "muscle": "MIDDLE BACK",
+    "images": [
+      "Leverage_High_Row/0.jpg",
+      "Leverage_High_Row/1.jpg"
+    ]
+  },
+  {
+    "id": "Leverage_Incline_Chest_Press",
+    "name": "LEVERAGE INCLINE CHEST PRESS",
+    "split": "PUSH",
+    "equipment": "MACHINE",
+    "muscle": "CHEST",
+    "images": [
+      "Leverage_Incline_Chest_Press/0.jpg",
+      "Leverage_Incline_Chest_Press/1.jpg"
+    ]
+  },
+  {
+    "id": "Leverage_Iso_Row",
+    "name": "LEVERAGE ISO ROW",
+    "split": "PULL",
+    "equipment": "MACHINE",
+    "muscle": "LATS",
+    "images": [
+      "Leverage_Iso_Row/0.jpg",
+      "Leverage_Iso_Row/1.jpg"
+    ]
+  },
+  {
+    "id": "Leverage_Shoulder_Press",
+    "name": "LEVERAGE SHOULDER PRESS",
+    "split": "PUSH",
+    "equipment": "MACHINE",
+    "muscle": "SHOULDERS",
+    "images": [
+      "Leverage_Shoulder_Press/0.jpg",
+      "Leverage_Shoulder_Press/1.jpg"
+    ]
+  },
+  {
+    "id": "Leverage_Shrug",
+    "name": "LEVERAGE SHRUG",
+    "split": "PULL",
+    "equipment": "MACHINE",
+    "muscle": "TRAPS",
+    "images": [
+      "Leverage_Shrug/0.jpg",
+      "Leverage_Shrug/1.jpg"
+    ]
+  },
+  {
+    "id": "Low_Cable_Crossover",
+    "name": "LOW CABLE CROSSOVER",
+    "split": "PUSH",
+    "equipment": "CABLE",
+    "muscle": "CHEST",
+    "images": [
+      "Low_Cable_Crossover/0.jpg",
+      "Low_Cable_Crossover/1.jpg"
+    ]
+  },
+  {
+    "id": "Low_Cable_Triceps_Extension",
+    "name": "LOW CABLE TRICEPS EXTENSION",
+    "split": "PUSH",
+    "equipment": "CABLE",
+    "muscle": "TRICEPS",
+    "images": [
+      "Low_Cable_Triceps_Extension/0.jpg",
+      "Low_Cable_Triceps_Extension/1.jpg"
+    ]
+  },
+  {
+    "id": "Low_Pulley_Row_To_Neck",
+    "name": "LOW PULLEY ROW TO NECK",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "SHOULDERS",
+    "images": [
+      "Low_Pulley_Row_To_Neck/0.jpg",
+      "Low_Pulley_Row_To_Neck/1.jpg"
+    ]
+  },
+  {
+    "id": "Lunge_Sprint",
+    "name": "LUNGE SPRINT",
+    "split": "LEGS",
+    "equipment": "MACHINE",
+    "muscle": "QUADRICEPS",
+    "images": [
+      "Lunge_Sprint/0.jpg",
+      "Lunge_Sprint/1.jpg"
+    ]
+  },
+  {
+    "id": "Lying_Cable_Curl",
+    "name": "LYING CABLE CURL",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "BICEPS",
+    "images": [
+      "Lying_Cable_Curl/0.jpg",
+      "Lying_Cable_Curl/1.jpg"
+    ]
+  },
+  {
+    "id": "Lying_Close-Grip_Bar_Curl_On_High_Pulley",
+    "name": "LYING CLOSE-GRIP BAR CURL ON HIGH PULLEY",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "BICEPS",
+    "images": [
+      "Lying_Close-Grip_Bar_Curl_On_High_Pulley/0.jpg",
+      "Lying_Close-Grip_Bar_Curl_On_High_Pulley/1.jpg"
+    ]
+  },
+  {
+    "id": "Lying_Leg_Curls",
+    "name": "LYING LEG CURLS",
+    "split": "LEGS",
+    "equipment": "MACHINE",
+    "muscle": "HAMSTRINGS",
+    "images": [
+      "Lying_Leg_Curls/0.jpg",
+      "Lying_Leg_Curls/1.jpg"
+    ]
+  },
+  {
+    "id": "Lying_Machine_Squat",
+    "name": "LYING MACHINE SQUAT",
+    "split": "LEGS",
+    "equipment": "MACHINE",
+    "muscle": "QUADRICEPS",
+    "images": [
+      "Lying_Machine_Squat/0.jpg",
+      "Lying_Machine_Squat/1.jpg"
+    ]
+  },
+  {
+    "id": "Lying_T-Bar_Row",
+    "name": "LYING T-BAR ROW",
+    "split": "PULL",
+    "equipment": "MACHINE",
+    "muscle": "MIDDLE BACK",
+    "images": [
+      "Lying_T-Bar_Row/0.jpg",
+      "Lying_T-Bar_Row/1.jpg"
+    ]
+  },
+  {
+    "id": "Machine_Bench_Press",
+    "name": "MACHINE BENCH PRESS",
+    "split": "PUSH",
+    "equipment": "MACHINE",
+    "muscle": "CHEST",
+    "images": [
+      "Machine_Bench_Press/0.jpg",
+      "Machine_Bench_Press/1.jpg"
+    ]
+  },
+  {
+    "id": "Machine_Bicep_Curl",
+    "name": "MACHINE BICEP CURL",
+    "split": "PULL",
+    "equipment": "MACHINE",
+    "muscle": "BICEPS",
+    "images": [
+      "Machine_Bicep_Curl/0.jpg",
+      "Machine_Bicep_Curl/1.jpg"
+    ]
+  },
+  {
+    "id": "Machine_Preacher_Curls",
+    "name": "MACHINE PREACHER CURLS",
+    "split": "PULL",
+    "equipment": "MACHINE",
+    "muscle": "BICEPS",
+    "images": [
+      "Machine_Preacher_Curls/0.jpg",
+      "Machine_Preacher_Curls/1.jpg"
+    ]
+  },
+  {
+    "id": "Machine_Shoulder_Military_Press",
+    "name": "MACHINE SHOULDER (MILITARY) PRESS",
+    "split": "PUSH",
+    "equipment": "MACHINE",
+    "muscle": "SHOULDERS",
+    "images": [
+      "Machine_Shoulder_Military_Press/0.jpg",
+      "Machine_Shoulder_Military_Press/1.jpg"
+    ]
+  },
+  {
+    "id": "Machine_Triceps_Extension",
+    "name": "MACHINE TRICEPS EXTENSION",
+    "split": "PUSH",
+    "equipment": "MACHINE",
+    "muscle": "TRICEPS",
+    "images": [
+      "Machine_Triceps_Extension/0.jpg",
+      "Machine_Triceps_Extension/1.jpg"
+    ]
+  },
+  {
+    "id": "Narrow_Stance_Hack_Squats",
+    "name": "NARROW STANCE HACK SQUATS",
+    "split": "LEGS",
+    "equipment": "MACHINE",
+    "muscle": "QUADRICEPS",
+    "images": [
+      "Narrow_Stance_Hack_Squats/0.jpg",
+      "Narrow_Stance_Hack_Squats/1.jpg"
+    ]
+  },
+  {
+    "id": "Narrow_Stance_Leg_Press",
+    "name": "NARROW STANCE LEG PRESS",
+    "split": "LEGS",
+    "equipment": "MACHINE",
+    "muscle": "QUADRICEPS",
+    "images": [
+      "Narrow_Stance_Leg_Press/0.jpg",
+      "Narrow_Stance_Leg_Press/1.jpg"
+    ]
+  },
+  {
+    "id": "One-Arm_High-Pulley_Cable_Side_Bends",
+    "name": "ONE-ARM HIGH-PULLEY CABLE SIDE BENDS",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "ABDOMINALS",
+    "images": [
+      "One-Arm_High-Pulley_Cable_Side_Bends/0.jpg",
+      "One-Arm_High-Pulley_Cable_Side_Bends/1.jpg"
+    ]
+  },
+  {
+    "id": "One-Legged_Cable_Kickback",
+    "name": "ONE-LEGGED CABLE KICKBACK",
+    "split": "LEGS",
+    "equipment": "CABLE",
+    "muscle": "GLUTES",
+    "images": [
+      "One-Legged_Cable_Kickback/0.jpg",
+      "One-Legged_Cable_Kickback/1.jpg"
+    ]
+  },
+  {
+    "id": "One_Arm_Lat_Pulldown",
+    "name": "ONE ARM LAT PULLDOWN",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "LATS",
+    "images": [
+      "One_Arm_Lat_Pulldown/0.jpg",
+      "One_Arm_Lat_Pulldown/1.jpg"
+    ]
+  },
+  {
+    "id": "Overhead_Cable_Curl",
+    "name": "OVERHEAD CABLE CURL",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "BICEPS",
+    "images": [
+      "Overhead_Cable_Curl/0.jpg",
+      "Overhead_Cable_Curl/1.jpg"
+    ]
+  },
+  {
+    "id": "Pallof_Press",
+    "name": "PALLOF PRESS",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "ABDOMINALS",
+    "images": [
+      "Pallof_Press/0.jpg",
+      "Pallof_Press/1.jpg"
+    ]
+  },
+  {
+    "id": "Pallof_Press_With_Rotation",
+    "name": "PALLOF PRESS WITH ROTATION",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "ABDOMINALS",
+    "images": [
+      "Pallof_Press_With_Rotation/0.jpg",
+      "Pallof_Press_With_Rotation/1.jpg"
+    ]
+  },
+  {
+    "id": "Pull_Through",
+    "name": "PULL THROUGH",
+    "split": "LEGS",
+    "equipment": "CABLE",
+    "muscle": "GLUTES",
+    "images": [
+      "Pull_Through/0.jpg",
+      "Pull_Through/1.jpg"
+    ]
+  },
+  {
+    "id": "Reverse_Cable_Curl",
+    "name": "REVERSE CABLE CURL",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "BICEPS",
+    "images": [
+      "Reverse_Cable_Curl/0.jpg",
+      "Reverse_Cable_Curl/1.jpg"
+    ]
+  },
+  {
+    "id": "Reverse_Grip_Triceps_Pushdown",
+    "name": "REVERSE GRIP TRICEPS PUSHDOWN",
+    "split": "PUSH",
+    "equipment": "CABLE",
+    "muscle": "TRICEPS",
+    "images": [
+      "Reverse_Grip_Triceps_Pushdown/0.jpg",
+      "Reverse_Grip_Triceps_Pushdown/1.jpg"
+    ]
+  },
+  {
+    "id": "Reverse_Hyperextension",
+    "name": "REVERSE HYPEREXTENSION",
+    "split": "LEGS",
+    "equipment": "MACHINE",
+    "muscle": "HAMSTRINGS",
+    "images": [
+      "Reverse_Hyperextension/0.jpg",
+      "Reverse_Hyperextension/1.jpg"
+    ]
+  },
+  {
+    "id": "Reverse_Machine_Flyes",
+    "name": "REVERSE MACHINE FLYES",
+    "split": "PULL",
+    "equipment": "MACHINE",
+    "muscle": "SHOULDERS",
+    "images": [
+      "Reverse_Machine_Flyes/0.jpg",
+      "Reverse_Machine_Flyes/1.jpg"
+    ]
+  },
+  {
+    "id": "Rope_Crunch",
+    "name": "ROPE CRUNCH",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "ABDOMINALS",
+    "images": [
+      "Rope_Crunch/0.jpg",
+      "Rope_Crunch/1.jpg"
+    ]
+  },
+  {
+    "id": "Rope_Straight-Arm_Pulldown",
+    "name": "ROPE STRAIGHT-ARM PULLDOWN",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "LATS",
+    "images": [
+      "Rope_Straight-Arm_Pulldown/0.jpg",
+      "Rope_Straight-Arm_Pulldown/1.jpg"
+    ]
+  },
+  {
+    "id": "Seated_Cable_Rows",
+    "name": "SEATED CABLE ROWS",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "MIDDLE BACK",
+    "images": [
+      "Seated_Cable_Rows/0.jpg",
+      "Seated_Cable_Rows/1.jpg"
+    ]
+  },
+  {
+    "id": "Seated_Cable_Shoulder_Press",
+    "name": "SEATED CABLE SHOULDER PRESS",
+    "split": "PUSH",
+    "equipment": "CABLE",
+    "muscle": "SHOULDERS",
+    "images": [
+      "Seated_Cable_Shoulder_Press/0.jpg",
+      "Seated_Cable_Shoulder_Press/1.jpg"
+    ]
+  },
+  {
+    "id": "Seated_Calf_Raise",
+    "name": "SEATED CALF RAISE",
+    "split": "LEGS",
+    "equipment": "MACHINE",
+    "muscle": "CALVES",
+    "images": [
+      "Seated_Calf_Raise/0.jpg",
+      "Seated_Calf_Raise/1.jpg"
+    ]
+  },
+  {
+    "id": "Seated_Leg_Curl",
+    "name": "SEATED LEG CURL",
+    "split": "LEGS",
+    "equipment": "MACHINE",
+    "muscle": "HAMSTRINGS",
+    "images": [
+      "Seated_Leg_Curl/0.jpg",
+      "Seated_Leg_Curl/1.jpg"
+    ]
+  },
+  {
+    "id": "Seated_One-arm_Cable_Pulley_Rows",
+    "name": "SEATED ONE-ARM CABLE PULLEY ROWS",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "MIDDLE BACK",
+    "images": [
+      "Seated_One-arm_Cable_Pulley_Rows/0.jpg",
+      "Seated_One-arm_Cable_Pulley_Rows/1.jpg"
+    ]
+  },
+  {
+    "id": "Seated_Two-Arm_Palms-Up_Low-Pulley_Wrist_Curl",
+    "name": "SEATED TWO-ARM PALMS-UP LOW-PULLEY WRIST CURL",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "FOREARMS",
+    "images": [
+      "Seated_Two-Arm_Palms-Up_Low-Pulley_Wrist_Curl/0.jpg",
+      "Seated_Two-Arm_Palms-Up_Low-Pulley_Wrist_Curl/1.jpg"
+    ]
+  },
+  {
+    "id": "Shotgun_Row",
+    "name": "SHOTGUN ROW",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "LATS",
+    "images": [
+      "Shotgun_Row/0.jpg",
+      "Shotgun_Row/1.jpg"
+    ]
+  },
+  {
+    "id": "Single-Arm_Cable_Crossover",
+    "name": "SINGLE-ARM CABLE CROSSOVER",
+    "split": "PUSH",
+    "equipment": "CABLE",
+    "muscle": "CHEST",
+    "images": [
+      "Single-Arm_Cable_Crossover/0.jpg",
+      "Single-Arm_Cable_Crossover/1.jpg"
+    ]
+  },
+  {
+    "id": "Single-Leg_Leg_Extension",
+    "name": "SINGLE-LEG LEG EXTENSION",
+    "split": "LEGS",
+    "equipment": "MACHINE",
+    "muscle": "QUADRICEPS",
+    "images": [
+      "Single-Leg_Leg_Extension/0.jpg",
+      "Single-Leg_Leg_Extension/1.jpg"
+    ]
+  },
+  {
+    "id": "Smith_Machine_Behind_the_Back_Shrug",
+    "name": "SMITH MACHINE BEHIND THE BACK SHRUG",
+    "split": "PULL",
+    "equipment": "MACHINE",
+    "muscle": "TRAPS",
+    "images": [
+      "Smith_Machine_Behind_the_Back_Shrug/0.jpg",
+      "Smith_Machine_Behind_the_Back_Shrug/1.jpg"
+    ]
+  },
+  {
+    "id": "Smith_Machine_Bench_Press",
+    "name": "SMITH MACHINE BENCH PRESS",
+    "split": "PUSH",
+    "equipment": "MACHINE",
+    "muscle": "CHEST",
+    "images": [
+      "Smith_Machine_Bench_Press/0.jpg",
+      "Smith_Machine_Bench_Press/1.jpg"
+    ]
+  },
+  {
+    "id": "Smith_Machine_Bent_Over_Row",
+    "name": "SMITH MACHINE BENT OVER ROW",
+    "split": "PULL",
+    "equipment": "MACHINE",
+    "muscle": "MIDDLE BACK",
+    "images": [
+      "Smith_Machine_Bent_Over_Row/0.jpg",
+      "Smith_Machine_Bent_Over_Row/1.jpg"
+    ]
+  },
+  {
+    "id": "Smith_Machine_Calf_Raise",
+    "name": "SMITH MACHINE CALF RAISE",
+    "split": "LEGS",
+    "equipment": "MACHINE",
+    "muscle": "CALVES",
+    "images": [
+      "Smith_Machine_Calf_Raise/0.jpg",
+      "Smith_Machine_Calf_Raise/1.jpg"
+    ]
+  },
+  {
+    "id": "Smith_Machine_Close-Grip_Bench_Press",
+    "name": "SMITH MACHINE CLOSE-GRIP BENCH PRESS",
+    "split": "PUSH",
+    "equipment": "MACHINE",
+    "muscle": "TRICEPS",
+    "images": [
+      "Smith_Machine_Close-Grip_Bench_Press/0.jpg",
+      "Smith_Machine_Close-Grip_Bench_Press/1.jpg"
+    ]
+  },
+  {
+    "id": "Smith_Machine_Decline_Press",
+    "name": "SMITH MACHINE DECLINE PRESS",
+    "split": "PUSH",
+    "equipment": "MACHINE",
+    "muscle": "CHEST",
+    "images": [
+      "Smith_Machine_Decline_Press/0.jpg",
+      "Smith_Machine_Decline_Press/1.jpg"
+    ]
+  },
+  {
+    "id": "Smith_Machine_Hang_Power_Clean",
+    "name": "SMITH MACHINE HANG POWER CLEAN",
+    "split": "LEGS",
+    "equipment": "MACHINE",
+    "muscle": "HAMSTRINGS",
+    "images": [
+      "Smith_Machine_Hang_Power_Clean/0.jpg",
+      "Smith_Machine_Hang_Power_Clean/1.jpg"
+    ]
+  },
+  {
+    "id": "Smith_Machine_Hip_Raise",
+    "name": "SMITH MACHINE HIP RAISE",
+    "split": "PULL",
+    "equipment": "MACHINE",
+    "muscle": "ABDOMINALS",
+    "images": [
+      "Smith_Machine_Hip_Raise/0.jpg",
+      "Smith_Machine_Hip_Raise/1.jpg"
+    ]
+  },
+  {
+    "id": "Smith_Machine_Incline_Bench_Press",
+    "name": "SMITH MACHINE INCLINE BENCH PRESS",
+    "split": "PUSH",
+    "equipment": "MACHINE",
+    "muscle": "CHEST",
+    "images": [
+      "Smith_Machine_Incline_Bench_Press/0.jpg",
+      "Smith_Machine_Incline_Bench_Press/1.jpg"
+    ]
+  },
+  {
+    "id": "Smith_Machine_Leg_Press",
+    "name": "SMITH MACHINE LEG PRESS",
+    "split": "LEGS",
+    "equipment": "MACHINE",
+    "muscle": "QUADRICEPS",
+    "images": [
+      "Smith_Machine_Leg_Press/0.jpg",
+      "Smith_Machine_Leg_Press/1.jpg"
+    ]
+  },
+  {
+    "id": "Smith_Machine_One-Arm_Upright_Row",
+    "name": "SMITH MACHINE ONE-ARM UPRIGHT ROW",
+    "split": "PULL",
+    "equipment": "MACHINE",
+    "muscle": "SHOULDERS",
+    "images": [
+      "Smith_Machine_One-Arm_Upright_Row/0.jpg",
+      "Smith_Machine_One-Arm_Upright_Row/1.jpg"
+    ]
+  },
+  {
+    "id": "Smith_Machine_Overhead_Shoulder_Press",
+    "name": "SMITH MACHINE OVERHEAD SHOULDER PRESS",
+    "split": "PUSH",
+    "equipment": "MACHINE",
+    "muscle": "SHOULDERS",
+    "images": [
+      "Smith_Machine_Overhead_Shoulder_Press/0.jpg",
+      "Smith_Machine_Overhead_Shoulder_Press/1.jpg"
+    ]
+  },
+  {
+    "id": "Smith_Machine_Pistol_Squat",
+    "name": "SMITH MACHINE PISTOL SQUAT",
+    "split": "LEGS",
+    "equipment": "MACHINE",
+    "muscle": "QUADRICEPS",
+    "images": [
+      "Smith_Machine_Pistol_Squat/0.jpg",
+      "Smith_Machine_Pistol_Squat/1.jpg"
+    ]
+  },
+  {
+    "id": "Smith_Machine_Reverse_Calf_Raises",
+    "name": "SMITH MACHINE REVERSE CALF RAISES",
+    "split": "LEGS",
+    "equipment": "MACHINE",
+    "muscle": "CALVES",
+    "images": [
+      "Smith_Machine_Reverse_Calf_Raises/0.jpg",
+      "Smith_Machine_Reverse_Calf_Raises/1.jpg"
+    ]
+  },
+  {
+    "id": "Smith_Machine_Squat",
+    "name": "SMITH MACHINE SQUAT",
+    "split": "LEGS",
+    "equipment": "MACHINE",
+    "muscle": "QUADRICEPS",
+    "images": [
+      "Smith_Machine_Squat/0.jpg",
+      "Smith_Machine_Squat/1.jpg"
+    ]
+  },
+  {
+    "id": "Smith_Machine_Stiff-Legged_Deadlift",
+    "name": "SMITH MACHINE STIFF-LEGGED DEADLIFT",
+    "split": "LEGS",
+    "equipment": "MACHINE",
+    "muscle": "HAMSTRINGS",
+    "images": [
+      "Smith_Machine_Stiff-Legged_Deadlift/0.jpg",
+      "Smith_Machine_Stiff-Legged_Deadlift/1.jpg"
+    ]
+  },
+  {
+    "id": "Smith_Machine_Upright_Row",
+    "name": "SMITH MACHINE UPRIGHT ROW",
+    "split": "PULL",
+    "equipment": "MACHINE",
+    "muscle": "TRAPS",
+    "images": [
+      "Smith_Machine_Upright_Row/0.jpg",
+      "Smith_Machine_Upright_Row/1.jpg"
+    ]
+  },
+  {
+    "id": "Smith_Single-Leg_Split_Squat",
+    "name": "SMITH SINGLE-LEG SPLIT SQUAT",
+    "split": "LEGS",
+    "equipment": "MACHINE",
+    "muscle": "QUADRICEPS",
+    "images": [
+      "Smith_Single-Leg_Split_Squat/0.jpg",
+      "Smith_Single-Leg_Split_Squat/1.jpg"
+    ]
+  },
+  {
+    "id": "Standing_Biceps_Cable_Curl",
+    "name": "STANDING BICEPS CABLE CURL",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "BICEPS",
+    "images": [
+      "Standing_Biceps_Cable_Curl/0.jpg",
+      "Standing_Biceps_Cable_Curl/1.jpg"
+    ]
+  },
+  {
+    "id": "Standing_Cable_Chest_Press",
+    "name": "STANDING CABLE CHEST PRESS",
+    "split": "PUSH",
+    "equipment": "CABLE",
+    "muscle": "CHEST",
+    "images": [
+      "Standing_Cable_Chest_Press/0.jpg",
+      "Standing_Cable_Chest_Press/1.jpg"
+    ]
+  },
+  {
+    "id": "Standing_Cable_Lift",
+    "name": "STANDING CABLE LIFT",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "ABDOMINALS",
+    "images": [
+      "Standing_Cable_Lift/0.jpg",
+      "Standing_Cable_Lift/1.jpg"
+    ]
+  },
+  {
+    "id": "Standing_Cable_Wood_Chop",
+    "name": "STANDING CABLE WOOD CHOP",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "ABDOMINALS",
+    "images": [
+      "Standing_Cable_Wood_Chop/0.jpg",
+      "Standing_Cable_Wood_Chop/1.jpg"
+    ]
+  },
+  {
+    "id": "Standing_Calf_Raises",
+    "name": "STANDING CALF RAISES",
+    "split": "LEGS",
+    "equipment": "MACHINE",
+    "muscle": "CALVES",
+    "images": [
+      "Standing_Calf_Raises/0.jpg",
+      "Standing_Calf_Raises/1.jpg"
+    ]
+  },
+  {
+    "id": "Standing_Leg_Curl",
+    "name": "STANDING LEG CURL",
+    "split": "LEGS",
+    "equipment": "MACHINE",
+    "muscle": "HAMSTRINGS",
+    "images": [
+      "Standing_Leg_Curl/0.jpg",
+      "Standing_Leg_Curl/1.jpg"
+    ]
+  },
+  {
+    "id": "Standing_Low-Pulley_Deltoid_Raise",
+    "name": "STANDING LOW-PULLEY DELTOID RAISE",
+    "split": "PUSH",
+    "equipment": "CABLE",
+    "muscle": "SHOULDERS",
+    "images": [
+      "Standing_Low-Pulley_Deltoid_Raise/0.jpg",
+      "Standing_Low-Pulley_Deltoid_Raise/1.jpg"
+    ]
+  },
+  {
+    "id": "Standing_Low-Pulley_One-Arm_Triceps_Extension",
+    "name": "STANDING LOW-PULLEY ONE-ARM TRICEPS EXTENSION",
+    "split": "PUSH",
+    "equipment": "CABLE",
+    "muscle": "TRICEPS",
+    "images": [
+      "Standing_Low-Pulley_One-Arm_Triceps_Extension/0.jpg",
+      "Standing_Low-Pulley_One-Arm_Triceps_Extension/1.jpg"
+    ]
+  },
+  {
+    "id": "Standing_One-Arm_Cable_Curl",
+    "name": "STANDING ONE-ARM CABLE CURL",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "BICEPS",
+    "images": [
+      "Standing_One-Arm_Cable_Curl/0.jpg",
+      "Standing_One-Arm_Cable_Curl/1.jpg"
+    ]
+  },
+  {
+    "id": "Standing_Rope_Crunch",
+    "name": "STANDING ROPE CRUNCH",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "ABDOMINALS",
+    "images": [
+      "Standing_Rope_Crunch/0.jpg",
+      "Standing_Rope_Crunch/1.jpg"
+    ]
+  },
+  {
+    "id": "Straight-Arm_Pulldown",
+    "name": "STRAIGHT-ARM PULLDOWN",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "LATS",
+    "images": [
+      "Straight-Arm_Pulldown/0.jpg",
+      "Straight-Arm_Pulldown/1.jpg"
+    ]
+  },
+  {
+    "id": "Thigh_Abductor",
+    "name": "THIGH ABDUCTOR",
+    "split": "LEGS",
+    "equipment": "MACHINE",
+    "muscle": "ABDUCTORS",
+    "images": [
+      "Thigh_Abductor/0.jpg",
+      "Thigh_Abductor/1.jpg"
+    ]
+  },
+  {
+    "id": "Thigh_Adductor",
+    "name": "THIGH ADDUCTOR",
+    "split": "LEGS",
+    "equipment": "MACHINE",
+    "muscle": "ADDUCTORS",
+    "images": [
+      "Thigh_Adductor/0.jpg",
+      "Thigh_Adductor/1.jpg"
+    ]
+  },
+  {
+    "id": "Triceps_Overhead_Extension_with_Rope",
+    "name": "TRICEPS OVERHEAD EXTENSION WITH ROPE",
+    "split": "PUSH",
+    "equipment": "CABLE",
+    "muscle": "TRICEPS",
+    "images": [
+      "Triceps_Overhead_Extension_with_Rope/0.jpg",
+      "Triceps_Overhead_Extension_with_Rope/1.jpg"
+    ]
+  },
+  {
+    "id": "Triceps_Pushdown",
+    "name": "TRICEPS PUSHDOWN",
+    "split": "PUSH",
+    "equipment": "CABLE",
+    "muscle": "TRICEPS",
+    "images": [
+      "Triceps_Pushdown/0.jpg",
+      "Triceps_Pushdown/1.jpg"
+    ]
+  },
+  {
+    "id": "Triceps_Pushdown_-_Rope_Attachment",
+    "name": "TRICEPS PUSHDOWN - ROPE ATTACHMENT",
+    "split": "PUSH",
+    "equipment": "CABLE",
+    "muscle": "TRICEPS",
+    "images": [
+      "Triceps_Pushdown_-_Rope_Attachment/0.jpg",
+      "Triceps_Pushdown_-_Rope_Attachment/1.jpg"
+    ]
+  },
+  {
+    "id": "Triceps_Pushdown_-_V-Bar_Attachment",
+    "name": "TRICEPS PUSHDOWN - V-BAR ATTACHMENT",
+    "split": "PUSH",
+    "equipment": "CABLE",
+    "muscle": "TRICEPS",
+    "images": [
+      "Triceps_Pushdown_-_V-Bar_Attachment/0.jpg",
+      "Triceps_Pushdown_-_V-Bar_Attachment/1.jpg"
+    ]
+  },
+  {
+    "id": "Underhand_Cable_Pulldowns",
+    "name": "UNDERHAND CABLE PULLDOWNS",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "LATS",
+    "images": [
+      "Underhand_Cable_Pulldowns/0.jpg",
+      "Underhand_Cable_Pulldowns/1.jpg"
+    ]
+  },
+  {
+    "id": "Upright_Cable_Row",
+    "name": "UPRIGHT CABLE ROW",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "TRAPS",
+    "images": [
+      "Upright_Cable_Row/0.jpg",
+      "Upright_Cable_Row/1.jpg"
+    ]
+  },
+  {
+    "id": "V-Bar_Pulldown",
+    "name": "V-BAR PULLDOWN",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "LATS",
+    "images": [
+      "V-Bar_Pulldown/0.jpg",
+      "V-Bar_Pulldown/1.jpg"
+    ]
+  },
+  {
+    "id": "Wide-Grip_Lat_Pulldown",
+    "name": "WIDE-GRIP LAT PULLDOWN",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "LATS",
+    "images": [
+      "Wide-Grip_Lat_Pulldown/0.jpg",
+      "Wide-Grip_Lat_Pulldown/1.jpg"
+    ]
+  },
+  {
+    "id": "Wide-Grip_Pulldown_Behind_The_Neck",
+    "name": "WIDE-GRIP PULLDOWN BEHIND THE NECK",
+    "split": "PULL",
+    "equipment": "CABLE",
+    "muscle": "LATS",
+    "images": [
+      "Wide-Grip_Pulldown_Behind_The_Neck/0.jpg",
+      "Wide-Grip_Pulldown_Behind_The_Neck/1.jpg"
+    ]
+  }
+]

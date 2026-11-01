@@ -7,6 +7,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#090a0f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="dumbbell.svg">
+  <link rel="icon" type="image/svg+xml" href="dumbbell.svg">
   <link rel="stylesheet" href="colors.css">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -78,6 +84,11 @@
         </div>
       </header>
 
+      <!-- Smart Schedule & Missed Day Banner -->
+      <div class="schedule-banner" id="schedule-banner" style="display: none;">
+        <!-- Injected dynamically: Catch-up warning or Up-Next notice -->
+      </div>
+
       <!-- Routine / Day Split Bar -->
       <nav class="split-nav" id="split-nav">
         <button class="split-tab active" data-split="PUSH">PUSH</button>
@@ -86,10 +97,23 @@
         <button class="split-tab" data-split="ALL">ALL</button>
       </nav>
 
+      <!-- Routine Action Header -->
+      <div class="routine-meta-bar">
+        <span class="routine-progress" id="routine-progress">0/5 MACHINES LOGGED</span>
+        <button class="btn-subtle" id="btn-open-add-machine">+ ADD MACHINE</button>
+      </div>
+
       <!-- Main Content: Exercise Cards for selected split -->
       <main class="exercise-list" id="exercise-list">
         <!-- Injected dynamically via app.js -->
       </main>
+
+      <!-- Bottom Session Control Bar -->
+      <footer class="session-footer">
+        <button class="btn-finish-workout" id="btn-finish-workout" disabled>
+          FINISH WORKOUT (LOG SETS FIRST)
+        </button>
+      </footer>
 
       <!-- Tap-Only Quick-Log Drawer (Modal) -->
       <div class="drawer-overlay" id="drawer-overlay">
@@ -146,6 +170,58 @@
           <button class="log-action-btn" id="btn-save-set">LOG SET</button>
         </div>
       </div>
+
+      <!-- Add Machine Modal Drawer -->
+      <div class="drawer-overlay" id="add-machine-overlay">
+        <div class="drawer" id="add-machine-drawer">
+          <div class="drawer-header">
+            <div>
+              <div class="drawer-category">DATASET // 138 MACHINES</div>
+              <div class="drawer-title">ADD MACHINE TO ROUTINE</div>
+            </div>
+            <button class="close-btn" id="add-machine-close" aria-label="Close">✕</button>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 10px;">
+            <input type="text" id="machine-search-input" placeholder="SEARCH CABLES / MACHINES..." autocomplete="off">
+          </div>
+
+          <div class="add-machine-list" id="add-machine-list">
+            <!-- Filtered machines list -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Session Completed Celebration Modal -->
+      <div class="drawer-overlay" id="summary-overlay">
+        <div class="drawer" id="summary-drawer">
+          <div class="drawer-header">
+            <div>
+              <div class="drawer-category">SESSION COMPLETE</div>
+              <div class="drawer-title" id="summary-title">PUSH DAY FINISHED</div>
+            </div>
+            <button class="close-btn" id="summary-close" aria-label="Close">✕</button>
+          </div>
+
+          <div class="summary-stats-box">
+            <div class="summary-metric">
+              <span class="metric-val" id="sum-volume">0</span>
+              <span class="metric-label">TOTAL VOLUME (KG)</span>
+            </div>
+            <div class="summary-metric">
+              <span class="metric-val" id="sum-sets">0</span>
+              <span class="metric-label">SETS COMPLETED</span>
+            </div>
+          </div>
+
+          <div class="summary-next-box" id="summary-next-text">
+            NEXT UP: PULL DAY
+          </div>
+
+          <button class="log-action-btn" id="btn-close-summary">DONE</button>
+        </div>
+      </div>
+
     </section>
 
   </div>
