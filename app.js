@@ -6,6 +6,7 @@
  */
 
 const API_BASE = 'https://gym-pwa.super-yahyaaa.workers.dev';
+const IMAGE_CDN_BASE = 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/';
 
 // Default Calendar Matrix: 0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat
 const CALENDAR_SCHEDULE = {
@@ -14,30 +15,29 @@ const CALENDAR_SCHEDULE = {
   5: 'LEGS'  // Fri
 };
 
-// Initial Seed Machines (Curated Machines & Cables)
+// Initial Seed Machines (Curated Machines & Cables with accurate exercise images)
 const DEFAULT_EXERCISES = [
   // PUSH
-  { id: 'chest_press', name: 'SEATED CHEST PRESS', split: 'PUSH', muscle: 'CHEST', defaultWeight: 50.0, defaultReps: 10 },
-  { id: 'incline_chest_press', name: 'INCLINE CHEST PRESS', split: 'PUSH', muscle: 'UPPER CHEST', defaultWeight: 45.0, defaultReps: 10 },
-  { id: 'shoulder_press_machine', name: 'SHOULDER PRESS MACHINE', split: 'PUSH', muscle: 'SHOULDERS', defaultWeight: 35.0, defaultReps: 10 },
-  { id: 'pec_deck_fly', name: 'PEC DECK FLY', split: 'PUSH', muscle: 'CHEST', defaultWeight: 40.0, defaultReps: 12 },
-  { id: 'cable_tricep_pushdown', name: 'CABLE TRICEP PUSHDOWN', split: 'PUSH', muscle: 'TRICEPS', defaultWeight: 25.0, defaultReps: 12 },
-  { id: 'cable_lateral_raise', name: 'CABLE LATERAL RAISE', split: 'PUSH', muscle: 'LATERAL DELT', defaultWeight: 7.5, defaultReps: 15 },
+  { id: 'leverage_chest_press', name: 'SEATED CHEST PRESS', split: 'PUSH', muscle: 'CHEST', defaultWeight: 50.0, defaultReps: 10, images: ['Leverage_Chest_Press/0.jpg', 'Leverage_Chest_Press/1.jpg'] },
+  { id: 'incline_chest_press', name: 'INCLINE CHEST PRESS', split: 'PUSH', muscle: 'UPPER CHEST', defaultWeight: 45.0, defaultReps: 10, images: ['Leverage_Incline_Chest_Press/0.jpg', 'Leverage_Incline_Chest_Press/1.jpg'] },
+  { id: 'shoulder_press_machine', name: 'SHOULDER PRESS MACHINE', split: 'PUSH', muscle: 'SHOULDERS', defaultWeight: 35.0, defaultReps: 10, images: ['Leverage_Shoulder_Press/0.jpg', 'Leverage_Shoulder_Press/1.jpg'] },
+  { id: 'butterfly', name: 'PEC DECK FLY', split: 'PUSH', muscle: 'CHEST', defaultWeight: 40.0, defaultReps: 12, images: ['Butterfly/0.jpg', 'Butterfly/1.jpg'] },
+  { id: 'triceps_pushdown', name: 'CABLE TRICEP PUSHDOWN', split: 'PUSH', muscle: 'TRICEPS', defaultWeight: 25.0, defaultReps: 12, images: ['Triceps_Pushdown/0.jpg', 'Triceps_Pushdown/1.jpg'] },
+  { id: 'cable_lateral_raise', name: 'CABLE LATERAL RAISE', split: 'PUSH', muscle: 'LATERAL DELT', defaultWeight: 7.5, defaultReps: 15, images: ['Cable_Seated_Lateral_Raise/0.jpg', 'Cable_Seated_Lateral_Raise/1.jpg'] },
 
   // PULL
-  { id: 'lat_pulldown', name: 'WIDE-GRIP LAT PULLDOWN', split: 'PULL', muscle: 'LATS', defaultWeight: 55.0, defaultReps: 10 },
-  { id: 'seated_cable_row', name: 'SEATED CABLE ROW', split: 'PULL', muscle: 'MID BACK', defaultWeight: 50.0, defaultReps: 10 },
-  { id: 'chest_supported_row', name: 'T-BAR / CHEST ROW', split: 'PULL', muscle: 'UPPER BACK', defaultWeight: 45.0, defaultReps: 10 },
-  { id: 'reverse_pec_deck', name: 'REVERSE PEC DECK', split: 'PULL', muscle: 'REAR DELTS', defaultWeight: 30.0, defaultReps: 15 },
-  { id: 'cable_bicep_curl', name: 'CABLE BICEP CURL', split: 'PULL', muscle: 'BICEPS', defaultWeight: 22.5, defaultReps: 12 },
-  { id: 'hammer_curl_cable', name: 'ROPE HAMMER CURL', split: 'PULL', muscle: 'BRACHIALIS', defaultWeight: 20.0, defaultReps: 12 },
+  { id: 'wide_grip_lat_pulldown', name: 'WIDE-GRIP LAT PULLDOWN', split: 'PULL', muscle: 'LATS', defaultWeight: 55.0, defaultReps: 10, images: ['Wide-Grip_Lat_Pulldown/0.jpg', 'Wide-Grip_Lat_Pulldown/1.jpg'] },
+  { id: 'seated_cable_rows', name: 'SEATED CABLE ROW', split: 'PULL', muscle: 'MID BACK', defaultWeight: 50.0, defaultReps: 10, images: ['Seated_Cable_Rows/0.jpg', 'Seated_Cable_Rows/1.jpg'] },
+  { id: 'reverse_machine_flyes', name: 'REVERSE PEC DECK', split: 'PULL', muscle: 'REAR DELTS', defaultWeight: 30.0, defaultReps: 15, images: ['Reverse_Machine_Flyes/0.jpg', 'Reverse_Machine_Flyes/1.jpg'] },
+  { id: 'machine_bicep_curl', name: 'CABLE BICEP CURL', split: 'PULL', muscle: 'BICEPS', defaultWeight: 22.5, defaultReps: 12, images: ['Machine_Bicep_Curl/0.jpg', 'Machine_Bicep_Curl/1.jpg'] },
+  { id: 'cable_hammer_curls', name: 'ROPE HAMMER CURL', split: 'PULL', muscle: 'BRACHIALIS', defaultWeight: 20.0, defaultReps: 12, images: ['Cable_Hammer_Curls_-_Rope_Attachment/0.jpg', 'Cable_Hammer_Curls_-_Rope_Attachment/1.jpg'] },
 
   // LEGS
-  { id: 'leg_press', name: '45° LEG PRESS MACHINE', split: 'LEGS', muscle: 'QUADS / GLUTES', defaultWeight: 120.0, defaultReps: 10 },
-  { id: 'hack_squat', name: 'HACK SQUAT MACHINE', split: 'LEGS', muscle: 'QUADS', defaultWeight: 80.0, defaultReps: 10 },
-  { id: 'leg_extension', name: 'LEG EXTENSION MACHINE', split: 'LEGS', muscle: 'QUADS', defaultWeight: 45.0, defaultReps: 12 },
-  { id: 'seated_leg_curl', name: 'SEATED LEG CURL', split: 'LEGS', muscle: 'HAMSTRINGS', defaultWeight: 40.0, defaultReps: 12 },
-  { id: 'standing_calf_raise', name: 'CALF RAISE MACHINE', split: 'LEGS', muscle: 'CALVES', defaultWeight: 60.0, defaultReps: 15 }
+  { id: 'leg_press', name: '45° LEG PRESS MACHINE', split: 'LEGS', muscle: 'QUADS / GLUTES', defaultWeight: 120.0, defaultReps: 10, images: ['Leg_Press/0.jpg', 'Leg_Press/1.jpg'] },
+  { id: 'hack_squat', name: 'HACK SQUAT MACHINE', split: 'LEGS', muscle: 'QUADS', defaultWeight: 80.0, defaultReps: 10, images: ['Hack_Squat/0.jpg', 'Hack_Squat/1.jpg'] },
+  { id: 'leg_extensions', name: 'LEG EXTENSION MACHINE', split: 'LEGS', muscle: 'QUADS', defaultWeight: 45.0, defaultReps: 12, images: ['Leg_Extensions/0.jpg', 'Leg_Extensions/1.jpg'] },
+  { id: 'seated_leg_curl', name: 'SEATED LEG CURL', split: 'LEGS', muscle: 'HAMSTRINGS', defaultWeight: 40.0, defaultReps: 12, images: ['Seated_Leg_Curl/0.jpg', 'Seated_Leg_Curl/1.jpg'] },
+  { id: 'standing_calf_raises', name: 'CALF RAISE MACHINE', split: 'LEGS', muscle: 'CALVES', defaultWeight: 60.0, defaultReps: 15, images: ['Standing_Calf_Raises/0.jpg', 'Standing_Calf_Raises/1.jpg'] }
 ];
 
 // State Management
@@ -87,6 +87,9 @@ const drawerClose = document.getElementById('drawer-close');
 const drawerTitle = document.getElementById('drawer-title');
 const drawerCategory = document.getElementById('drawer-category');
 const drawerLastStat = document.getElementById('drawer-last-stat');
+const drawerPhotoWrap = document.getElementById('drawer-photo-wrap');
+const drawerImg0 = document.getElementById('drawer-img-0');
+const drawerImg1 = document.getElementById('drawer-img-1');
 const valWeight = document.getElementById('val-weight');
 const valReps = document.getElementById('val-reps');
 const todaySetsPills = document.getElementById('today-sets-pills');
@@ -338,14 +341,23 @@ function renderCards() {
 
     const card = document.createElement('div');
     card.className = 'exercise-card';
+    const thumbUrl = (ex.images && ex.images[0])
+      ? `${IMAGE_CDN_BASE}${ex.images[0]}`
+      : 'dumbbell.svg';
+
     card.innerHTML = `
-      <div class="card-top">
-        <span class="card-title">${ex.name}</span>
-        <span class="card-badge">${ex.muscle}</span>
-      </div>
-      <div class="card-bottom">
-        <span class="card-last-stat">${last ? `LAST: ${last.weight}KG × ${last.reps}` : 'NO LOGS'}</span>
-        <span class="card-sets-count ${today.length > 0 ? 'done' : ''}">${today.length > 0 ? `${today.length} SETS TODAY` : 'READY'}</span>
+      <div class="card-main-row">
+        <img class="card-thumb" src="${thumbUrl}" alt="${ex.name}" loading="lazy" onerror="this.src='dumbbell.svg'">
+        <div class="card-info">
+          <div class="card-top">
+            <span class="card-title">${ex.name}</span>
+            <span class="card-badge">${ex.muscle}</span>
+          </div>
+          <div class="card-bottom">
+            <span class="card-last-stat">${last ? `LAST: ${last.weight}KG × ${last.reps}` : 'NO LOGS'}</span>
+            <span class="card-sets-count ${today.length > 0 ? 'done' : ''}">${today.length > 0 ? `${today.length} SETS TODAY` : 'READY'}</span>
+          </div>
+        </div>
       </div>
     `;
 
@@ -373,6 +385,20 @@ function openDrawer(exercise) {
   STATE.selectedExercise = exercise;
   drawerTitle.textContent = exercise.name;
   drawerCategory.textContent = `MACHINE // ${exercise.split}`;
+
+  // Render Machine Photos in Drawer
+  if (exercise.images && exercise.images.length >= 1) {
+    drawerPhotoWrap.style.display = 'flex';
+    drawerImg0.src = `${IMAGE_CDN_BASE}${exercise.images[0]}`;
+    if (exercise.images[1]) {
+      drawerImg1.style.display = 'block';
+      drawerImg1.src = `${IMAGE_CDN_BASE}${exercise.images[1]}`;
+    } else {
+      drawerImg1.style.display = 'none';
+    }
+  } else {
+    drawerPhotoWrap.style.display = 'none';
+  }
 
   const last = getLastLog(exercise.id);
   const today = getTodayLogs(exercise.id);
@@ -523,10 +549,17 @@ function renderAddMachineList(filterText) {
 
     const item = document.createElement('div');
     item.className = 'add-machine-item';
+    const thumbUrl = (ex.images && ex.images[0])
+      ? `${IMAGE_CDN_BASE}${ex.images[0]}`
+      : 'dumbbell.svg';
+
     item.innerHTML = `
-      <div>
-        <div class="add-item-name">${ex.name}</div>
-        <div class="add-item-tag">${ex.equipment} // ${ex.muscle}</div>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <img class="card-thumb" style="width:38px; height:38px;" src="${thumbUrl}" alt="${ex.name}" loading="lazy" onerror="this.src='dumbbell.svg'">
+        <div>
+          <div class="add-item-name">${ex.name}</div>
+          <div class="add-item-tag">${ex.equipment} // ${ex.muscle}</div>
+        </div>
       </div>
       <button class="banner-btn ${isAlreadyInRoutine ? '' : 'primary'}">
         ${isAlreadyInRoutine ? 'ADDED' : '+ ADD'}
@@ -541,7 +574,8 @@ function renderAddMachineList(filterText) {
           split: STATE.currentSplit === 'ALL' ? ex.split : STATE.currentSplit,
           muscle: ex.muscle,
           defaultWeight: 40.0,
-          defaultReps: 10
+          defaultReps: 10,
+          images: ex.images || []
         });
         localStorage.setItem('iron_exercises', JSON.stringify(STATE.exercises));
         renderCards();
